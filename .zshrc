@@ -1,6 +1,6 @@
 HISTSIZE=1000
 SAVEHIST=1000
-bindkey -e
+bindkey -v
 
 autoload -Uz compinit promptinit
 compinit
