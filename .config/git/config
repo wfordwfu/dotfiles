@@ -1,0 +1,18 @@
+[core]
+	editor = nvim
+	autocrlf = input
+	hooksPath = ${XDG_CONFIG_HOME}/git/hooks
+[user]
+	name = Will Ford
+	email = 7543630+wfordwfu@users.noreply.github.com
+[push]
+	default = simple
+	followTags = yes
+[sendemail]
+	annotate = yes
+[getreview]
+	username = wfordwfu
+[init]
+	defaultBranch = main
+[commit]
+	verbose = yes
