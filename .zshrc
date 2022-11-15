@@ -7,7 +7,7 @@ compinit
 promptinit
 
 typeset -U path PATH
-path=(~/.local/bin /opt/homebrew/bin /home/linuxbrew/.linuxbrew/bin $path)
+path=(${HOME}/.local/bin /opt/homebrew/bin /home/linuxbrew/.linuxbrew/bin $path)
 
 export PATH
 
