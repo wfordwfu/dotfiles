@@ -1,0 +1,9 @@
+brew 'dmenu'
+brew 'jq'
+brew 'tldr'
+brew 'fzf'
+brew 'htop'
+brew 'pandoc'
+brew 'tmux'
+brew 'neovim'
+
