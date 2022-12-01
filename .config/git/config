@@ -1,13 +1,14 @@
+[include]
+  path = config.local
 [core]
 	editor = nvim
 	autocrlf = input
 	hooksPath = ${XDG_CONFIG_HOME}/git/hooks
-[user]
-	name = Will Ford
-	email = 7543630+wfordwfu@users.noreply.github.com
 [push]
 	default = simple
-	followTags = yes
+  followTags = yes
+[pull]
+  rebase = false
 [sendemail]
 	annotate = yes
 [getreview]
@@ -15,4 +16,14 @@
 [init]
 	defaultBranch = main
 [commit]
-	verbose = yes
+  verbose = true
+[fetch]
+  prune = true
+[diff]
+  tool = vimdiff
+[difftool]
+  prompt = false
+[alias]
+  amend = commit --amend
+  contains = branch --contains
+

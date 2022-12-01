@@ -19,3 +19,5 @@ export SHELL_SESSION_FILE="${SHELL_SESSION_DIR}/${TERM_SESSION_ID}"
 export STARSHIP_CONFIG="${XDG_CONFIG_HOME}/starship.toml"
 export STARSHIP_CACHE="${XDG_CACHE_HOME}/.starship"
 
+# Python
+export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
