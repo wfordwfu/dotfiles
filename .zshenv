@@ -15,9 +15,12 @@ export HISTFILE="${XDG_STATE_HOME}/zsh/history"
 export SHELL_SESSION_DIR="${XDG_STATE_HOME}/zsh/sessions"
 export SHELL_SESSION_FILE="${SHELL_SESSION_DIR}/${TERM_SESSION_ID}"
 
+# Homebew
+export HOMEBREW_BUNDLE_FILE="${XDG_CONFIG_HOME}/homebrew/Brewfile"
+
 # Starship
-export STARSHIP_CONFIG="${XDG_CONFIG_HOME}/starship.toml"
-export STARSHIP_CACHE="${XDG_CACHE_HOME}/.starship"
+export STARSHIP_CONFIG="${XDG_CONFIG_HOME}/starship/starship.toml"
+export STARSHIP_CACHE="${XDG_CACHE_HOME}/starship"
 
 # Python
 export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
