@@ -1,5 +1,5 @@
-[include]
-  path = config.local
+[includeIf]
+  path = config.user
 [core]
 	editor = nvim
 	autocrlf = input
@@ -24,6 +24,6 @@
 [difftool]
   prompt = false
 [alias]
-  amend = commit --amend
+  amend = commiti -a --amend -C HEAD
   contains = branch --contains
-
+  hist = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --branches
