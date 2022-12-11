@@ -18,25 +18,11 @@ fpath=(
     "${fpath[@]}"
 )
 
-#autoload -Uz gitenv
-# autoload -Uz ${fpath}[1]/*(.:t)
-
+#autoload -Uz ${fpath}[1]/*(.:t)
+autoload -Uz gitenv
+gitenv
 
 eval "$(starship init zsh)"
-
-gitenv() {
-    
-    if hash gh 2>/dev/null; then
-      export GIT_AUTHOR_NAME=$(gh api user --jq '.name')
-      export GIT_AUTHOR_EMAIL=$(gh api user --jq '(.id | tostring) + "+" + .login + "@users.noreply.github.com"')
-      export GIT_COMMITTER_NAME=$GIT_AUTHOR_NAME
-      export GIT_COMMITTER_EMAIL=$GIT_AUTHOR_EMAIL
-    else
-      echo "Please install gh cli"
-    fi
-}
-
-gitenv
 
 AUTOSUGGEST=$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 if test -f "$AUTOSUGGEST"; then
