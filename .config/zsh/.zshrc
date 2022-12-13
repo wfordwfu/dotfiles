@@ -24,6 +24,8 @@ gitenv
 
 eval "$(starship init zsh)"
 
+eval "$(fnm env --use-on-cd)"
+
 AUTOSUGGEST=$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 if test -f "$AUTOSUGGEST"; then
   source "$AUTOSUGGEST"
