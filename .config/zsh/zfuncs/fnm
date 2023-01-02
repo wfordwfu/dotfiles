@@ -1,0 +1,11 @@
+#!/usr/bin/env zsh
+# fnmcompletion function
+
+fnmcompletion() {
+
+    if hash fnm 2>/dev/null; then
+      fnm completions --shell zsh
+    fi
+}
+
+# end fnmcompletion function

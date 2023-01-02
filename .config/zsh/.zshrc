@@ -19,7 +19,7 @@ fpath=(
 )
 
 #autoload -Uz ${fpath}[1]/*(.:t)
-autoload -Uz gitenv
+autoload -Uz gitenv 
 gitenv
 
 eval "$(starship init zsh)"
