@@ -11,8 +11,6 @@
   rebase = false
 [sendemail]
 	annotate = yes
-[getreview]
-	username = wfordwfu
 [init]
 	defaultBranch = main
 [commit]
