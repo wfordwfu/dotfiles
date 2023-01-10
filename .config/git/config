@@ -13,6 +13,8 @@
 	annotate = yes
 [init]
 	defaultBranch = main
+[safe]
+  directory = /home/linuxbrew/.linuxbrew/Homebrew
 [commit]
   verbose = true
 [fetch]
