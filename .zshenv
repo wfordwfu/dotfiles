@@ -23,6 +23,7 @@ export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 
 # Homebew
 export HOMEBREW_BUNDLE_FILE="${XDG_CONFIG_HOME}/homebrew/Brewfile"
+export HOMEBREW_NO_ANALYTICS=1
 
 # Starship
 export STARSHIP_CONFIG="${XDG_CONFIG_HOME}/starship/starship.toml"
