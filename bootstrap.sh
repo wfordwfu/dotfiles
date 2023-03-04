@@ -5,7 +5,9 @@ create_symlinks() {
     script_dir=$(dirname "$(readlink -f "$0")")
 
     # Get a list of all files in this directory that start with a dot.
-    files=$(find -maxdepth 1 -type f -name ".*")
+    files=$(
+    find -path "./.*" -maxdepth 1 -not \( -path "./.git*" -maxdepth 1 -prune \)
+    )   
 
     # Create a symbolic link to each file in the home directory.
     for file in $files; do
