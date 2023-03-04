@@ -18,8 +18,14 @@ create_symlinks() {
     done
 }
 
-rm ~/.zshrc
+if [[ ${USER} == "codespace" ]]; then
+  rm ~/.zshrc
+  create_symlinks
+fi
 
-create_symlinks
-
-$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)
+if hash brew 2>/dev/null; then
+  apt-get install build-essential -y
+  /bin/bash -c "NONINTERACTIVE=1 $(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+else
+   echo "Brew already installed!"
+fi
