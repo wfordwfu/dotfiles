@@ -18,5 +18,8 @@ create_symlinks() {
     done
 }
 
+rm ~/.zshrc
+
 create_symlinks
 
+$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)
