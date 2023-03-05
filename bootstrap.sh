@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 create_symlinks() {
     # Get the directory in which this script lives.
@@ -23,9 +23,8 @@ if [[ ${USER} == "codespace" ]]; then
   create_symlinks
 fi
 
-if hash brew 2>/dev/null; then
-  apt-get install build-essential -y
-  /bin/bash -c "NONINTERACTIVE=1 $(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-else
-   echo "Brew already installed!"
-fi
+sudo apt-get install build-essential procps -y
+
+#if hash brew 2>/dev/null; then
+#  NONINTERACTIVE=1 $(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)
+#fi
