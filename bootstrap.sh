@@ -22,9 +22,3 @@ if [[ ${USER} == "codespace" ]]; then
   rm ~/.zshrc
   create_symlinks
 fi
-
-apt-get install build-essential cowsay procps -y
-
-#if hash brew 2>/dev/null; then
-#  NONINTERACTIVE=1 $(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)
-#fi
