@@ -30,6 +30,6 @@ if hash brew 2>/dev/null; then
   echo "##################################################"
 else
   sudo apt-get update -y
-  sudo apt-get install build-essential cowsay procps -y
+  sudo apt-get install build-essential procps -y
   source /dev/stdin  <<< "NONINTERACTIVE=1 $(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi

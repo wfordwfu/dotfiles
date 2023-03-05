@@ -14,6 +14,7 @@ export PATH
 alias config="$(which git) --git-dir=${HOME}/.cfg/ --work-tree=${HOME}"
 
 fpath=(
+    "$(brew --prefix)/share/zsh/site-functions"
     "${XDG_CONFIG_HOME}/zsh/zfuncs"
     "${fpath[@]}"
 )
