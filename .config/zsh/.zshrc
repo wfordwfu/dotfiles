@@ -6,7 +6,7 @@ autoload -Uz compinit promptinit
 compinit
 promptinit
 
-if [[ -e /home/linuxbrew/.linuxbrew/bin ]]; then
+if [[ -d /home/linuxbrew/.linuxbrew/bin ]]; then
   brewpath="/home/linuxbrew/.linuxbrew/bin"
 else
   brewpath="/opt/homebrew/bin"
