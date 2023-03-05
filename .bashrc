@@ -3,6 +3,7 @@ echo "please run brew bundle to install any dependencies"
 echo "##################################################"
 sudo chsh -s $(which zsh) ${USER}
 
+sudo apt-get update
 sudo apt-get install build-essential cowsay procps -y
 
 if hash brew 2>/dev/null; then
