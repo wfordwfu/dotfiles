@@ -1,5 +1,7 @@
 sudo chsh -s $(which zsh) ${USER}
 
+PATH=${HOME}/.local/bin:/opt/homebrew/bin:/home/linuxbrew/.linuxbrew/bin:$PATH
+
 if hash starship 2>/dev/null; then
   brew upgrade starship
 else
