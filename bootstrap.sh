@@ -19,7 +19,7 @@ create_symlinks() {
 }
 
 if [[ ${USER} == "codespace" ]]; then
-  rm ~/.zshrc
+#  rm ~/.zshrc
   create_symlinks
 fi
 

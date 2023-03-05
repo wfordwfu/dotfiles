@@ -6,8 +6,14 @@ autoload -Uz compinit promptinit
 compinit
 promptinit
 
+if [[ -e /home/linuxbrew/.linuxbrew/bin ]]; then
+  brewpath="/home/linuxbrew/.linuxbrew/bin"
+else
+  brewpath="/opt/homebrew/bin"
+fi
+
 typeset -U path PATH
-path=(${HOME}/.local/bin /opt/homebrew/bin /home/linuxbrew/.linuxbrew/bin $path)
+path=(${HOME}/.local/bin $brewpath $path)
 
 export PATH
 
@@ -24,12 +30,12 @@ autoload -Uz gitenv
 gitenv
 
 if hash starship 2>/dev/null; then
-  brew upgrade starship
+  ${brewpath}/brew upgrade starship
 else
-  brew install -q starship
-  brew install -q zsh-autosuggestions
-  brew install -q zsh-syntax-highlighting
-  brew install -q fnm
+  ${brewpath}/brew install -q starship
+  ${brewpath}/brew install -q zsh-autosuggestions
+  ${brewpath}/brew install -q zsh-syntax-highlighting
+  ${brewpath}/brew install -q fnm
 fi
 
 eval "$(starship init zsh)"
