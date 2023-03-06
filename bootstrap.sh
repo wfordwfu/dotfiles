@@ -29,6 +29,7 @@ if hash brew 2>/dev/null; then
   echo "Run brew bundle to install additional features"
   echo "##################################################"
 else
+  source /dev/stdin  <<< "NONINTERACTIVE=1 $(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   if hash yum 2>/dev/null; then
     sudo yum upgrade
     sudo yum install gcc gcc-c++ kernel-devel make
@@ -36,7 +37,6 @@ else
     sudo apt-get update -y
     sudo apt-get install build-essential procps -y
   fi
-  source /dev/stdin  <<< "NONINTERACTIVE=1 $(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
 if hash zsh 2>/dev/null; then
