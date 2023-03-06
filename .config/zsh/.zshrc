@@ -30,7 +30,7 @@ autoload -Uz gitenv
 gitenv
 
 if hash starship 2>/dev/null; then
-  ${brewpath}/brew upgrade starship
+  echo "Basic config in place."
 else
   ${brewpath}/brew install -q starship
   ${brewpath}/brew install -q zsh-autosuggestions
