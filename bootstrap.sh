@@ -18,7 +18,7 @@ create_symlinks() {
     done
 }
 
-if [[ $(hostname -s) = "codespace*" ]]; then
+if [[ $(hostname -s) = codespace* ]]; then
 #  rm ~/.zshrc
   create_symlinks
 fi
