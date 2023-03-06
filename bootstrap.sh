@@ -29,7 +29,7 @@ if hash brew 2>/dev/null; then
   echo "Run brew bundle to install additional features"
   echo "##################################################"
 else
-  if yum 2>/dev/null; then
+  if hash yum 2>/dev/null; then
     sudo yum upgrade
     sudo yum install gcc gcc-c++ kernel-devel make
   else
