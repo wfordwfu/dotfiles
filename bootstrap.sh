@@ -42,7 +42,7 @@ fi
 if hash zsh 2>/dev/null; then
   echo "ZSH already installed"
 else
-  if yum 2>/dev/null; then
+  if hash yum 2>/dev/null; then
     sudo yum upgrade
     sudo yum install zsh
   else
