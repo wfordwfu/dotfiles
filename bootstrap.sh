@@ -18,7 +18,7 @@ create_symlinks() {
     done
 }
 
-if [[ ${USER} == "codespace" ]]; then
+if [[ $(hostname -s) = "codespace*" ]]; then
 #  rm ~/.zshrc
   create_symlinks
 fi
@@ -29,7 +29,25 @@ if hash brew 2>/dev/null; then
   echo "Run brew bundle to install additional features"
   echo "##################################################"
 else
-  sudo apt-get update -y
-  sudo apt-get install build-essential procps -y
+  if yum 2>/dev/null; then
+    sudo yum upgrade
+    sudo yum install gcc gcc-c++ kernel-devel make
+  else
+    sudo apt-get update -y
+    sudo apt-get install build-essential procps -y
+  fi
   source /dev/stdin  <<< "NONINTERACTIVE=1 $(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
+
+if hash zsh 2>/dev/null; then
+  echo "ZSH already installed"
+else
+  if yum 2>/dev/null; then
+    sudo yum upgrade
+    sudo yum install zsh
+  else
+    sudo apt-get update -y
+    sudo apt-get install zsh -y
+  fi
+fi
+
