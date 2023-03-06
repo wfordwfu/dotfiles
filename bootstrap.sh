@@ -26,7 +26,6 @@ fi
 if hash brew 2>/dev/null; then
   echo "##################################################"
   echo "Brew already installed!!!"
-  echo "Run brew bundle to install additional features"
   echo "##################################################"
 else
   source /dev/stdin  <<< "NONINTERACTIVE=1 $(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -40,7 +39,9 @@ else
 fi
 
 if hash zsh 2>/dev/null; then
+  echo "##################################################"
   echo "ZSH already installed"
+  echo "##################################################"
 else
   if hash yum 2>/dev/null; then
     sudo yum upgrade
