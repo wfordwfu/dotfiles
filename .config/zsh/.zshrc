@@ -38,6 +38,7 @@ else
   ${brewpath}/brew install -q zsh-autosuggestions
   ${brewpath}/brew install -q zsh-syntax-highlighting
   ${brewpath}/brew install -q fnm
+  ${brewpath}/brew install -q wget
 fi
 
 eval "$(starship init zsh)"
