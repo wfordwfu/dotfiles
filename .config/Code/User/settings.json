@@ -1,0 +1,23 @@
+{
+"terminal.integrated.profiles.linux": {
+    "zsh": {
+        "path": "/usr/bin/zsh"
+    }
+},
+"terminal.integrated.defaultProfile.linux": "zsh",
+"terminal.integrated.fontFamily": "Consolas, 'Hack Nerd Font Mono'",
+"editor.wordWrap": "on",
+"editor.tabSize": 2,
+"editor.lineNumbers": "relative",
+"editor.bracketPairColorization.enabled": true,
+"editor.fontFamily": "Consolas, 'Courier New', monospace, 'Hack Nerd Font Mono'",
+"editor.guides.bracketPairs": "active",
+"path-autocomplete.pathMappings": {
+    "/": "/",
+    "./": "${folder}"
+},
+"explorer.confirmDragAndDrop": false,
+"explorer.confirmDelete": false,
+"workbench.iconTheme": "vscode-icons",
+"python.disableInstallationCheck": true,
+}
