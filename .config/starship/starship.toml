@@ -100,3 +100,7 @@ disabled = true
 [ruby]
 format = "via [ $version]($style) "
 disabled = true
+
+[battery]
+disabled = true
+
