@@ -44,6 +44,9 @@ export CARGO_HOME="$XDG_DATA_HOME"/cargo
 # k9s
 export K9SCONFIG="${XDG_CONFIG_HOME}"/k9s
 
+# kubernetes
+export KUBECONFIG="${XDG_CONFIG_HOME}/kube"
+
 # aws-cli
 export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME"/aws/credentials
 export AWS_CONFIG_FILE="$XDG_CONFIG_HOME"/aws/config
