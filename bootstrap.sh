@@ -52,3 +52,20 @@ else
   fi
 fi
 
+if hash code 2>/dev/null; then
+  code --install-extension mutantdino.resourcemonitor
+  code --install-extension yzhang.markdown-all-in-one
+  code --install-extension vscode-icons-team.vscode-icons
+  code --install-extension oderwat.indent-rainbow
+  code --install-extension esbenp.prettier-vscode
+  code --install-extension github.copilot
+  code --install-extension github.copilot-chat
+  code --install-extension vscodevim.vim
+  code --install-extension github.github-vscode-theme
+
+
+else
+  echo "##################################################"
+  echo "VSCode cli not available"
+  echo "##################################################"
+fi
