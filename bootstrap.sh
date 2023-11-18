@@ -56,15 +56,17 @@ if hash code 2>/dev/null; then
   echo "##################################################"
   echo "VSCode cli is available"
   echo "##################################################"
+  if ! code --list-extensions | grep -q "github.copilot"; then
+    # Install GitHub Copilot
+    code --install-extension GitHub.copilot
+    code --install-extension GitHub.copilot-chat
+  fi
 #  code --install-extension mutantdino.resourcemonitor
 #  code --install-extension yzhang.markdown-all-in-one
 #  code --install-extension vscode-icons-team.vscode-icons
 #  code --install-extension oderwat.indent-rainbow
 #  code --install-extension esbenp.prettier-vscode
-#  code --install-extension github.copilot
-#  code --install-extension github.copilot-chat
 #  code --install-extension vscodevim.vim
-#  code --install-extension github.github-vscode-theme
 else
   echo "##################################################"
   echo "VSCode cli not available"
