@@ -1,5 +1,6 @@
-[includeIf]
-  path = config.user
+# [includeIf "gitdir:${XDG_CONFIG_HOME}/git/"]
+[include]
+  path = ${XDG_CONFIG_HOME}/git/config.user
 [core]
 	editor = nvim
 	autocrlf = input
@@ -27,3 +28,9 @@
   amend = commiti -a --amend -C HEAD
   contains = branch --contains
   hist = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --branches
+[credential "https://github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
