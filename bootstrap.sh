@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-set -o errexit
-set -o errtrace
-set -o nounset
-set -o pipefail
+#set -o errexit
+#set -o errtrace
+#set -o nounset
+#set -o pipefail
 
 create_symlinks() {
     # Get the directory in which this script lives.
