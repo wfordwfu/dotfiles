@@ -5,24 +5,32 @@ set -o errtrace
 set -o nounset
 set -o pipefail
 
+extensions=(
+  "GitHub.copilot"
+  "GitHub.copilot-chat"
+  "vscodevim.vim"
+  "vscode-icons-team.vscode-icons"
+  "oderwat.indent-rainbow"
+  "esbenp.prettier-vscode"
+  "mutantdino.resourcemonitor"
+  "yzhang.markdown-all-in-one"
+)
+
+
 if hash code 2>/dev/null; then
-  echo "##################################################"
-  echo "VSCode cli is available"
-  echo "##################################################"
-  if ! code --list-extensions | grep -q "github.copilot"; then
-    # Install GitHub Copilot
-    code --install-extension GitHub.copilot
-    code --install-extension GitHub.copilot-chat
-  fi
-#  code --install-extension mutantdino.resourcemonitor
-#  code --install-extension yzhang.markdown-all-in-one
-#  code --install-extension vscode-icons-team.vscode-icons
-#  code --install-extension oderwat.indent-rainbow
-#  code --install-extension esbenp.prettier-vscode
-#  code --install-extension vscodevim.vim
+  IFS=$'\n' read -d '' -ra installed <<< $(code --list-extensions |\
+    grep -v "Extensions installed")
+  for extension in "${extensions[@]}"; do
+    if [[ ! " ${installed[@]} " =~ " ${extension} " ]]; then
+      code --install-extension ${extension}
+    else
+      echo " ${extension} is already installed"
+    fi
+  done
 else
   echo "##################################################"
-  echo "VSCode cli not available"
+  echo "VSCode cli is not installed
   echo "##################################################"
+  exit 1
 fi
 
