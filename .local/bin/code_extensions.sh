@@ -29,7 +29,7 @@ if hash code 2>/dev/null; then
   done
 else
   echo "##################################################"
-  echo "VSCode cli is not installed
+  echo "VSCode cli is not installed"
   echo "##################################################"
   exit 1
 fi
