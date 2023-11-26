@@ -8,12 +8,14 @@
 extensions=(
   "GitHub.copilot"
   "GitHub.copilot-chat"
+  "GitGub.github-vscode-theme"
   "vscodevim.vim"
   "vscode-icons-team.vscode-icons"
   "oderwat.indent-rainbow"
   "esbenp.prettier-vscode"
   "mutantdino.resourcemonitor"
   "yzhang.markdown-all-in-one"
+  "ms-vscode-remote.vscode-remote-extensionpack"
 )
 
 
