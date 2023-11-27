@@ -8,7 +8,7 @@
 extensions=(
   "GitHub.copilot"
   "GitHub.copilot-chat"
-  "GitGub.github-vscode-theme"
+  "GitHub.github-vscode-theme"
   "vscodevim.vim"
   "vscode-icons-team.vscode-icons"
   "oderwat.indent-rainbow"
