@@ -1,3 +1,18 @@
-#! /usr/bin/env bash
+#!/bin/sh
 
-echo "Running pre-commit hook"
+# Check if .gitattributes exists (windows line endings)
+if [ ! -f .gitattributes ]; then
+    cat <<EOF > .gitattributes
+* text=auto eol=lf
+*.{cmd,[cC][mM][dD]} text eol=crlf
+*.{bat,[bB][aA][tT]} text eol=crlf
+EOF
+fi
+
+# run local pre-commit hook if it exists
+repo_hook=".git/hooks/pre-commit"
+if [ -x "$repo_hook" ]; then
+    exec "$repo_hook"
+else
+    echo "No repository-level pre-commit hook found. Continuing with system-level actions..."
+fi
