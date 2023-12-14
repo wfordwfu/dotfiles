@@ -1,5 +1,6 @@
 #!/bin/sh
 
+
 # Check if .gitattributes exists (windows line endings)
 if [ ! -f .gitattributes ]; then
     cat <<EOF > .gitattributes
@@ -7,6 +8,22 @@ if [ ! -f .gitattributes ]; then
 *.{cmd,[cC][mM][dD]} text eol=crlf
 *.{bat,[bB][aA][tT]} text eol=crlf
 EOF
+    exit 1
+fi
+
+# Check if .gitignore exists
+if [ ! -f .gitignore ]; then
+    cat <<EOF > .gitignore
+# Go find a good starter .gitignore file at
+# https://github.com/github/gitignore
+# Best case, keep it as short as possible.
+# IMPORTANT: Use this to keep your .env file out of git
+# Ignore everything
+*
+# Except gitignore
+!.gitignore
+EOF
+    exit 1
 fi
 
 # run local pre-commit hook if it exists
