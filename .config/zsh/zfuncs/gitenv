@@ -12,10 +12,15 @@ gitenv() {
       gh auth status
       if [ $? -eq 0 ]; then
         mkdir -p ${XDG_CONFIG_HOME}/git
-        cat <<EOF >${XDG_CONFIG_HOME}/git/config.user
+        cat <<EOF >>${XDG_CONFIG_HOME}/git/config
 [user]
   name = $(gh api user --jq '.name')
   email = $(gh api user --jq '(.id | tostring) + "+" + .login + "@users.noreply.github.com"')
+[alias]
+  initFull = !sh ${XDG_CONFIG_HOME}/git/scripts/initFull.sh
+  amend = commiti -a --amend -C HEAD
+  contains = branch --contains
+  hist = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --branches
 EOF
       else
         echo "There's a problem connecting to gh cli"

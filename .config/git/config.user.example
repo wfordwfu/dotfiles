@@ -1,5 +1,0 @@
-[user]
-# This file should not be necessary.  The user info is set within the zsh config using the GIT_AUTHOR and GIT_COMMITTER variables.
-# If you need to use this file, remove .example from the name and update the below values.
-	  name = Username
-	  email = EmailAddress
