@@ -19,5 +19,5 @@
 "explorer.confirmDragAndDrop": false,
 "explorer.confirmDelete": false,
 "workbench.iconTheme": "vscode-icons",
-"python.disableInstallationCheck": true,
+"python.disableInstallationCheck": true
 }
