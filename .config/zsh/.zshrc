@@ -2,6 +2,10 @@ HISTSIZE=1000
 SAVEHIST=1000
 bindkey -v
 
+if [[ ! -d ${XDG_STATE_HOME}/zsh ]]; then
+  mkdir -p ${XDG_STATE_HOME}/zsh
+fi
+
 autoload -Uz compinit promptinit
 compinit
 promptinit
