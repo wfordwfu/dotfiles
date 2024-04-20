@@ -43,11 +43,19 @@ else
   ${brewpath}/brew install -q zsh-syntax-highlighting
   ${brewpath}/brew install -q fnm
   ${brewpath}/brew install -q wget
+  ${brewpath}/brew install -q pipx
 fi
 
 eval "$(starship init zsh)"
 
 eval "$(fnm env --use-on-cd)"
+
+if hash pipx 2>/dev/null; then
+  pipx ensurepath
+fi
+
+
+
 
 AUTOSUGGEST=$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 if test -f "$AUTOSUGGEST"; then
