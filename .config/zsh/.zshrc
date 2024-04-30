@@ -54,8 +54,7 @@ if hash pipx 2>/dev/null; then
   pipx ensurepath
 fi
 
-
-
+eval "$(direnv hook zsh)"
 
 AUTOSUGGEST=$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 if test -f "$AUTOSUGGEST"; then
