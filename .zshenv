@@ -14,6 +14,7 @@ export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
 export HISTFILE="${XDG_STATE_HOME}/zsh/history"
 export SHELL_SESSION_DIR="${XDG_STATE_HOME}/zsh/sessions"
 export SHELL_SESSION_FILE="${SHELL_SESSION_DIR}/${TERM_SESSION_ID}"
+export CLICOLOR=1
 
 # KDE
 export KDEHOME="$XDG_CONFIG_HOME"/kde

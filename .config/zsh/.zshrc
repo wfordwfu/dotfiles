@@ -1,8 +1,17 @@
 
 # Aliases
 
-alias ls='ls --color'
 alias vim='nvim'
+alias cp='cp -i'
+alias mv='mv -i'
+alias cat='bat'
+alias ls='ls -aFh --color=always'
+alias 000='chmod -R 000'
+alias 644='chmod -R 644'
+alias 755='chmod -R 755'
+alias 777='chmod -R 777'
+alias ..='cd ..'
+alias ...='cd ../..'
 
 # History
 
@@ -68,6 +77,9 @@ fpath=(
 
 autoload -Uz gitenv 
 gitenv
+
+#autoload -Uz cd
+#cd
 
 if hash starship 2>/dev/null; then
   echo "#####################################################"
