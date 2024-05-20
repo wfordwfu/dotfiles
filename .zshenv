@@ -58,3 +58,7 @@ export AZURE_CONFIG_DIR=${XDG_DATA_HOME}/azure
 # ripgrep
 export RIPGREP_CONFIG_PATH=${XDG_CONFIG_HOME}/ripgrep/config
 
+# zoxide
+export _ZO_ECHO=1
+#export _ZO_FZF_OPTS=
+
