@@ -62,8 +62,13 @@ fi
 
 source "${ZINIT_HOME}/zinit.zsh"
 
+if [[ -d /opt/mssql-tools18/bin ]]; then
+  mssqltoolspath="/opt/mssql-tools18/bin"
+fi
+
+
 typeset -U path PATH
-path=(${HOME}/.local/bin $brewpath $path)
+path=(${HOME}/.local/bin $mssqltoolspath $brewpath $path)
 
 export PATH
 
@@ -137,3 +142,6 @@ eval "$(direnv hook zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(starship init zsh)"
 eval "$(fnm env --use-on-cd)"
+
+cd ${HOME}
+
