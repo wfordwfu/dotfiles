@@ -143,5 +143,6 @@ eval "$(zoxide init --cmd cd zsh)"
 eval "$(starship init zsh)"
 eval "$(fnm env --use-on-cd)"
 
-cd ${HOME}
-
+if [[ -v OldIP ]] && [[ ! "$TERM_PROGRAM" = "vscode" ]]; then
+  cd ${HOME}
+fi
