@@ -7,15 +7,53 @@ add_newline = true
 command_timeout = 1000
 
 # config
-format = """$env_var $all"""
+#format = """$env_var $all"""
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_state\
+$git_status\
+$fill\
+$cmd_duration $jobs $time\
+$line_break\
+$character"""
+
+[fill]
+symbol = " "
+
+[jobs]
+symbol = ""
+style = "bold red"
+number_threshold = 1
+format = "[$symbol]($style)"
+
+[git_state]
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+style = "bright-black"
+
+[cmd_duration]
+format = "[$duration]($style)"
+style = "yellow"
+
+[time]
+disabled = false
+use_12hr = true
+style = "bold white"
+format = "[$time]($style)"
+
+[direnv]
+disabled = false
+detect_files = ['.envrc']
 
 # Change the default prompt characters
 [character]
-# old config
-# success_symbol = "[](238)"
-# error_symbol = "[](238)"
-success_symbol = ""
-error_symbol = ""
+#success_symbol = ""
+#error_symbol = ""
+success_symbol = "[❯](purple)"
+error_symbol = "[✗](red)"
+vicmd_symbol = "[❮](green)"
 
 # Shows an icon that should be included by zshrc script based on the distribution or os
 [env_var.STARSHIP_DISTRO]
@@ -29,7 +67,7 @@ style_user = "white"
 style_root = "white"
 format = "[$user]($style) "
 disabled = false
-show_always = true
+#show_always = true
 
 [hostname]
 ssh_only = false
@@ -39,16 +77,17 @@ disabled = false
 [directory]
 truncation_length = 1
 truncation_symbol = "…/"
-home_symbol = " ~"
+home_symbol = "~"
 read_only_style = "197"
 read_only = "  "
 format = "at [$path]($style)[$read_only]($read_only_style) "
 
 [git_branch]
-symbol = " "
+symbol = ' '
 format = "via [$symbol$branch]($style) "
 # truncation_length = 4
 truncation_symbol = "…/"
+# ignore_branches = ["main"]
 style = "bold green"
 
 [git_status]
@@ -71,18 +110,6 @@ format = 'via [ﴱ $context\($namespace\)](bold purple) '
 disabled = false
 
 # (deactivated because of no space left)
-# 
-[terraform]
-format = "via [ terraform $version]($style) 壟 [$workspace]($style) "
-disabled = true
-
-[vagrant]
-format = "via [ vagrant $version]($style) "
-disabled = true
-
-[docker_context]
-format = "via [ $context](bold blue) "
-disabled = true
 
 [helm]
 format = "via [ $version](bold purple) "
