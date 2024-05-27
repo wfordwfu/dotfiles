@@ -62,3 +62,6 @@ export RIPGREP_CONFIG_PATH=${XDG_CONFIG_HOME}/ripgrep/config
 export _ZO_ECHO=1
 #export _ZO_FZF_OPTS=
 
+# nix
+# export NIX_SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
+
