@@ -147,9 +147,9 @@ if [[ -v OldIP ]] && [[ ! "$TERM_PROGRAM" = "vscode" ]]; then
   cd ${HOME}
 fi
 
-if [[ -f "${XDG_CONFIG_HOME}/.ssh/github" ]]; then
-  if [-z "${SSH_AGENT_PID}" ]; then
+if [[ -f "${HOME}/.ssh/github" ]]; then
+  if [ -z "${SSH_AGENT_PID}" ]; then
     eval "$(ssh-agent -s)"
   fi
-  ssh-add -q ${XDG_CONFIG_HOME}/.ssh/github
+  ssh-add -q ${HOME}/.ssh/github
 fi
