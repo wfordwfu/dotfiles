@@ -13,6 +13,13 @@ alias 777='chmod -R 777'
 alias ..='cd ..'
 alias ...='cd ../..'
 
+if ! command -v pbcopy >/dev/null 2>&1 && command -v xsel >/dev/null 2>&1; then
+   alias pbcopy='xsel --input --clipboard'
+fi
+if ! command -v pbpaste >/dev/null 2>&1 && command -v xsel >/dev/null 2>&1; then
+   alias pbpaste='xsel --output --clipboard'
+fi
+
 # History
 
 HISTSIZE=5000
