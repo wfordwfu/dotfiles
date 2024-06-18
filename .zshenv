@@ -65,6 +65,9 @@ export _ZO_ECHO=1
 # bat
 export BAT_CONFIG_PATH="${XDG_CONFIG_HOME}/bat/bat.conf"
 
+# bmks
+export URL_FILE_PATH="${XDG_DATA_HOME}/bmks"
+
 # nix
 # export NIX_SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
 
