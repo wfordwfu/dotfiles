@@ -17,10 +17,10 @@ export SHELL_SESSION_FILE="${SHELL_SESSION_DIR}/${TERM_SESSION_ID}"
 export CLICOLOR=1
 
 # KDE
-export KDEHOME="$XDG_CONFIG_HOME"/kde
+export KDEHOME="${XDG_CONFIG_HOME}/kde"
 
 # xorg-xauth
-export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
+export XAUTHORITY="${XDG_RUNTIME_DIR}/Xauthority"
 
 # Homebew
 export HOMEBREW_BUNDLE_FILE="${XDG_CONFIG_HOME}/homebrew/Brewfile"
@@ -31,36 +31,39 @@ export STARSHIP_CONFIG="${XDG_CONFIG_HOME}/starship/starship.toml"
 export STARSHIP_CACHE="${XDG_CACHE_HOME}/starship"
 
 # Python / Jupyter / Conda
-export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
-export JUPYTER_CONFIG_DIR="${XDG_CONFIG_HOME}"/jupyter
+export REQUESTS_CA_BUNDLE="/etc/ssl/certs/ca-certificates.crt"
+export JUPYTER_CONFIG_DIR="${XDG_CONFIG_HOME}/jupyter"
 export JUPYTER_PLATFORM_DIRS="1"
-export PYENV_ROOT=${XDG_DATA_HOME}/pyenv
+export PYENV_ROOT="${XDG_DATA_HOME}/pyenv"
 export CONDARC="${XDG_CONFIG_HOME}/conda/condarc"
 export WORKON_HOME="${XDG_DATA_HOME}/virtualenvs"
 
 # Rust
-export RUSTUP_HOME="${XDG_DATA_HOME}"/rustup
-export CARGO_HOME="$XDG_DATA_HOME"/cargo
+export RUSTUP_HOME="${XDG_DATA_HOME}/rustup"
+export CARGO_HOME="${XDG_DATA_HOME}/cargo"
 
 # k9s
-export K9SCONFIG="${XDG_CONFIG_HOME}"/k9s
+export K9SCONFIG="${XDG_CONFIG_HOME}/k9s"
 
 # kubernetes
 export KUBECONFIG="${XDG_CONFIG_HOME}/kube"
 
 # aws-cli
-export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME"/aws/credentials
-export AWS_CONFIG_FILE="$XDG_CONFIG_HOME"/aws/config
+export AWS_SHARED_CREDENTIALS_FILE="${XDG_CONFIG_HOME}/aws/credentials"
+export AWS_CONFIG_FILE="${XDG_CONFIG_HOME}/aws/config"
 
 # azure-cli
-export AZURE_CONFIG_DIR=${XDG_DATA_HOME}/azure
+export AZURE_CONFIG_DIR="${XDG_DATA_HOME}/azure"
 
 # ripgrep
-export RIPGREP_CONFIG_PATH=${XDG_CONFIG_HOME}/ripgrep/config
+export RIPGREP_CONFIG_PATH="${XDG_CONFIG_HOME}/ripgrep/config"
 
 # zoxide
 export _ZO_ECHO=1
 #export _ZO_FZF_OPTS=
+
+# bat
+export BAT_CONFIG_PATH="${XDG_CONFIG_HOME}/bat/bat.conf"
 
 # nix
 # export NIX_SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
