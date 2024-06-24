@@ -38,4 +38,4 @@ brew 'duckdb'
 brew 'zellij'
 brew 'direnv'
 brew 'xsel'
-
+brew 'watchman'

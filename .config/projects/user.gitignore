@@ -1,0 +1,8 @@
+# Go find a good starter .gitignore file at
+# https://github.com/github/gitignore
+# Best case, keep it as short as possible.
+# exclude anything in directory starting with . #
+.*/*
+# exclude all files starting with .
+.*
+
