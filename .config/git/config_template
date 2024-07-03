@@ -2,6 +2,7 @@
 	editor = nvim
 	autocrlf = input
 	hooksPath = ${XDG_CONFIG_HOME}/git/hooks
+  fileMode = true
 [push]
 	default = simple
   followTags = yes
@@ -19,8 +20,14 @@
   prune = true
 [diff]
   tool = vimdiff
+  algorithm = patience
+  compactionHeuristic = true
 [difftool]
   prompt = false
+[rerere]
+  enabled = true
+[color]
+  ui = auto
 [credential "https://github.com"]
 	helper = 
 	helper = !/opt/homebrew/bin/gh auth git-credential

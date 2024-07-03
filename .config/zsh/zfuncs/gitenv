@@ -3,20 +3,18 @@
 #echo "Initialize gitenv"
 
 gitenv() {
-    if [ ! -f ${XDG_CONFIG_HOME}/git/config ]; then
-      echo "###############################################"
-      echo "Building Git Configuration"
-      echo "###############################################"
-      if [ hash git 2>/dev/null ]; then
+    if command -v git &> /dev/null; then
+      echo "Git found. Checking for Configuation."
+      if [ ! -f ${XDG_CONFIG_HOME}/git/config ]; then
+        echo "###############################################"
+        echo "Building Git Configuration"
+        echo "###############################################"
+        mkdir -p ${XDG_CONFIG_HOME}/git
         envsubst < ${XDG_CONFIG_HOME}/git/config_template > ${XDG_CONFIG_HOME}/git/config
-      else
-        echo "Please install git"
-      fi
-      if hash gh 2>/dev/null; then
-        gh auth status
-        if [ $? -eq 0 ]; then
-          mkdir -p ${XDG_CONFIG_HOME}/git
-          cat <<EOF >>${XDG_CONFIG_HOME}/git/config
+        if command -v gh &> /dev/null; then
+          gh auth status
+          if [ $? -eq 0 ]; then
+            cat <<EOF >>${XDG_CONFIG_HOME}/git/config
 [user]
   name = $(gh api user --jq '.name')
   email = $(gh api user --jq '(.id | tostring) + "+" + .login + "@users.noreply.github.com"')
@@ -28,12 +26,16 @@ gitenv() {
   hist = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --branches
   
 EOF
+          
+          else
+            echo "There's a problem connecting to gh cli"
+          fi
         else
-          echo "There's a problem connecting to gh cli"
+          echo "Please install gh cli"
         fi
-      else
-        echo "Please install gh cli"
       fi
+    else
+      echo "Please check your system. Git does not appear to be installed."
     fi
 }
 # end set gitenv
