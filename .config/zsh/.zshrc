@@ -12,6 +12,7 @@ alias 755='chmod -R 755'
 alias 777='chmod -R 777'
 alias ..='cd ..'
 alias ...='cd ../..'
+alias inv='nvim $(fzf -m --preview="bat --color=always {}")'
 
 if ! command -v pbcopy >/dev/null 2>&1 && command -v xsel >/dev/null 2>&1; then
    alias pbcopy='xsel --input --clipboard'
@@ -146,9 +147,16 @@ zinit cdreplay -q
 # Shell integrations
 
 eval "$(direnv hook zsh)"
+
 eval "$(zoxide init --cmd cd zsh)"
+
 eval "$(starship init zsh)"
+
 eval "$(fnm env --use-on-cd)"
+
+if command -v fzf >/dev/null 2>&1; then
+  source <(fzf --zsh)
+fi
 
 if [[ -v OldIP ]] && [[ ! "$TERM_PROGRAM" = "vscode" ]]; then
   cd ${HOME}
