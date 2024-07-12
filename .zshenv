@@ -38,6 +38,9 @@ export PYENV_ROOT="${XDG_DATA_HOME}/pyenv"
 export CONDARC="${XDG_CONFIG_HOME}/conda/condarc"
 export WORKON_HOME="${XDG_DATA_HOME}/virtualenvs"
 
+# R Lang
+export RENV_PATHS_CACHE="${XDG_CACHE_HOME}/renv"
+
 # Rust
 export RUSTUP_HOME="${XDG_DATA_HOME}/rustup"
 export CARGO_HOME="${XDG_DATA_HOME}/cargo"
