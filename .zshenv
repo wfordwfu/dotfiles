@@ -68,6 +68,15 @@ export _ZO_ECHO=1
 # bat
 export BAT_CONFIG_PATH="${XDG_CONFIG_HOME}/bat/bat.conf"
 
+# fzf
+export FZF_CTRL_T_OPTS="--height 60% \
+--border sharp \
+--layout reverse \
+--prompt '∷ ' \
+--pointer ▶ \
+--marker ⇒"
+#export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git --ignore .cfg -l -g ""'
+
 # bmks
 export URL_FILE_PATH="${XDG_DATA_HOME}/bmks"
 

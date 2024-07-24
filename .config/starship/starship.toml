@@ -87,7 +87,7 @@ symbol = ' '
 format = "via [$symbol$branch]($style) "
 # truncation_length = 4
 truncation_symbol = "…/"
-# ignore_branches = ["main"]
+ignore_branches = ["main"]
 style = "bold green"
 
 [git_status]
@@ -104,6 +104,11 @@ modified = " "
 staged = '[++\($count\)](green)'
 renamed = "襁 "
 deleted = " "
+
+[nix_shell]
+disabled = false
+impure_msg = 'devbox'
+format = 'via [$symbol$state](bold blue)'
 
 [kubernetes]
 format = 'via [ﴱ $context\($namespace\)](bold purple) '
