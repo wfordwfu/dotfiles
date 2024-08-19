@@ -81,5 +81,6 @@ export FZF_CTRL_T_OPTS="--height 60% \
 export URL_FILE_PATH="${XDG_DATA_HOME}/bmks"
 
 # nix
+export NIX_CONF_DIR="${XDG_CONFIG_HOME}/nix"
 # export NIX_SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
 
