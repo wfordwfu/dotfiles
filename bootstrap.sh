@@ -81,7 +81,7 @@ if hash devbox 2>/dev/null; then
   echo "Devbox already installed"
   echo "##################################################"
 else
-  curl -fsSL https://get.jetify.com/devbox | bash -s -- -y
+  curl -fsSL https://get.jetify.com/devbox | bash -s --
 fi
 
 if hash zsh 2>/dev/null; then
