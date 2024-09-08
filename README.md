@@ -40,4 +40,5 @@ I may come across a better solution in the future, but prior to this I would wri
 - [How to Store Dotfiles](https://atlassian.com/git/tutorials/dotfiles)
 - [XDG Base Directory](https://wiki.archlinux.org/title/XDG_Base_Directory)
 - [LunarVim - nvim-basic-ide](https://github.com/LunarVim/nvim-basic-ide)
+- [DevBox](https://www.jetify.com/devbox/docs/)
 
