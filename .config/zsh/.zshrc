@@ -13,6 +13,7 @@ alias 777='chmod -R 777'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias inv='nvim $(fzf -m --preview="bat --color=always {}")'
+alias MyPath='echo -e ${PATH//:/\\n}'
 
 if ! command -v pbcopy >/dev/null 2>&1 && command -v xsel >/dev/null 2>&1; then
    alias pbcopy='xsel --input --clipboard'
@@ -88,7 +89,7 @@ fpath=(
     "${fpath[@]}"
 )
 
-autoload -Uz gitenv 
+autoload -Uz gitenv _git_dir add_untracked
 gitenv
 
 #autoload -Uz cd

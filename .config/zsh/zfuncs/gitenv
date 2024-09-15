@@ -39,3 +39,22 @@ EOF
     fi
 }
 # end set gitenv
+
+_git_dir() {
+  local git_cmd
+  if [ "${PWD}" = "${HOME}" ]; then
+    git_cmd="$(which git) --git-dir=${HOME}/.cfg/ --work-tree=${HOME}"
+  else
+    git_cmd="$(which git)"
+  fi
+  echo $git_cmd
+}
+# end getdir
+
+add_untracked() {
+  local git_cmd=$(_git_dir)
+  local ls_cmd="$git_cmd ls-files --others --full-name --exclude-standard --exclude='go/*' --exclude='.vscode-server/*' --exclude='.npm/*' --exclude='.m2/*' --exclude='.local/state/*' --exclude='.local/share/*' --exclude='.cache/*' --exclude='.kube/*' --exclude='code/*' --"
+  local files_to_add=$(eval $ls_cmd | xargs -I {} bash -c '[ ! -L "{}" ] && echo "{}"' | fzf --multi --preview "bat {} --color=always")
+  eval "$git_cmd add $files_to_add"
+}
+
