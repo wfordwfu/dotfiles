@@ -15,6 +15,7 @@ $directory\
 $git_branch\
 $git_state\
 $git_status\
+$python\
 $fill\
 $cmd_duration $jobs $time\
 $line_break\
@@ -46,6 +47,7 @@ format = "[$time]($style)"
 [direnv]
 disabled = false
 detect_files = ['.envrc']
+format = '[$symbol$loaded]($style) '
 
 # Change the default prompt characters
 [character]
@@ -114,16 +116,18 @@ format = 'via [$symbol$state](bold blue)'
 format = 'via [ﴱ $context\($namespace\)](bold purple) '
 disabled = false
 
-# (deactivated because of no space left)
-
 [helm]
 format = "via [ $version](bold purple) "
 disabled = true
 
 [python]
-symbol = " "
+symbol = "🐍"
 python_binary = "python3"
-disabled = true
+version_format = '${minor}'
+format = '$symbol$version'
+detect_files = ['requirements.txt']
+detect_folders = ['.venv']
+disabled = false
 
 [nodejs]
 format = "via [ $version](bold green) "
