@@ -84,3 +84,12 @@ export URL_FILE_PATH="${XDG_DATA_HOME}/bmks"
 export NIX_CONF_DIR="${XDG_CONFIG_HOME}/nix"
 # export NIX_SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
 
+# curl
+export CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+
+# wsl
+#export WSL_CERTIFICATE_STORE=/etc/ssl/certs/ca-certificates.crt
+
+# node
+export NODE_EXTRA_CA_CERTS=/etc/ssl/certs/ca-certificates.crt
+
