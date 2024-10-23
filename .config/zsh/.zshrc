@@ -22,6 +22,10 @@ if ! command -v pbpaste >/dev/null 2>&1 && command -v xsel >/dev/null 2>&1; then
    alias pbpaste='xsel --output --clipboard'
 fi
 
+if [[ $(uname -r) =~ WSL ]]; then
+    alias wopen="cmd.exe /C start 2> /dev/null"
+fi
+
 # History
 
 HISTSIZE=5000
