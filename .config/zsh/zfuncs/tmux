@@ -4,6 +4,11 @@
 
 tmuxsetup() {
     if command -v tmux $> /dev/null; then
-        mkdir -p ${XDG_CACHE_HOME}/tpm
+      if [[ ! -d ${XDG_CACHE_HOME}/tmux/plugins ]]; then
+        mkdir -p ${XDG_CACHE_HOME}/tmux/plugins
+        git clone https://github.com/tmux-plugins/tpm ${XDG_CACHE_HOME}/tmux/plugins
+      else
+        echo "if having issues with tmux, rm -rf ~/.cache/tmux and restart terminal"
+      fi
     fi
 }
