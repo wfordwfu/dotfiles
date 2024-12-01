@@ -99,6 +99,12 @@ gitenv
 #autoload -Uz cd
 #cd
 
+#autoload -Uz sshcontrolmaster
+#sshcontrolmaster
+
+autoload -Uz tmuxsetup
+tmuzsetup
+
 if hash starship 2>/dev/null; then
   echo "#####################################################"
   echo "Run brew bundle to install/update additional features"

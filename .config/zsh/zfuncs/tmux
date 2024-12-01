@@ -1,0 +1,9 @@
+#!/usr/bin/env zsh
+# setup for tmux
+
+
+tmuxsetup() {
+    if command -v tmux $> /dev/null; then
+        mkdir -p ${XDG_CACHE_HOME}/tpm
+    fi
+}
