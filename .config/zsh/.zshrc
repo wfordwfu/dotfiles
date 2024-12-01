@@ -103,7 +103,7 @@ gitenv
 #sshcontrolmaster
 
 autoload -Uz tmuxsetup
-tmuzsetup
+tmuxsetup
 
 if hash starship 2>/dev/null; then
   echo "#####################################################"
