@@ -30,6 +30,9 @@ export HOMEBREW_NO_ANALYTICS=1
 export STARSHIP_CONFIG="${XDG_CONFIG_HOME}/starship/starship.toml"
 export STARSHIP_CACHE="${XDG_CACHE_HOME}/starship"
 
+# Go
+export GOPATH="${GO_DATA_HOME}/go"
+
 # Python / Jupyter / Conda
 export REQUESTS_CA_BUNDLE="/etc/ssl/certs/ca-certificates.crt"
 export JUPYTER_CONFIG_DIR="${XDG_CONFIG_HOME}/jupyter"
@@ -37,6 +40,7 @@ export JUPYTER_PLATFORM_DIRS="1"
 export PYENV_ROOT="${XDG_DATA_HOME}/pyenv"
 export CONDARC="${XDG_CONFIG_HOME}/conda/condarc"
 export WORKON_HOME="${XDG_DATA_HOME}/virtualenvs"
+export PIP_CACHE_DIIR="${XDG_CACHE_HOME}/pip"
 
 # R Lang
 export RENV_PATHS_CACHE="${XDG_CACHE_HOME}/renv"
@@ -85,11 +89,12 @@ export NIX_CONF_DIR="${XDG_CONFIG_HOME}/nix"
 # export NIX_SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
 
 # curl
-export CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+export CURL_CA_BUNDLE="/etc/ssl/certs/ca-certificates.crt"
 
 # wsl
 #export WSL_CERTIFICATE_STORE=/etc/ssl/certs/ca-certificates.crt
 
 # node
-export NODE_EXTRA_CA_CERTS=/etc/ssl/certs/ca-certificates.crt
+export NODE_EXTRA_CA_CERTS="/etc/ssl/certs/ca-certificates.crt"
+export NPM_CONFIG_CACHE="${XDG_CACHE_HOME}/npm"
 
