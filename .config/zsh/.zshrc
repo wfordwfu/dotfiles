@@ -102,7 +102,7 @@ gitenv
 autoload -Uz sshconfig
 sshconfig
 
-autolaod -Uz sshcontrolmaster
+autoload -Uz sshcontrolmaster
 sshcontrolmaster
 
 autoload -Uz tmuxsetup
