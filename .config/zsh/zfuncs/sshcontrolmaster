@@ -1,0 +1,16 @@
+#!/usr/bin/env zsh
+# ssh ControlMaster function
+
+
+sshcontrolmaster() {
+    if command -v ssh &> /dev/null;then
+        echo "ssh found. Checking for default folder"
+        if [ ! -d ${XDG_CACHE_HOME}/ssh ];then
+            mkdir -p ${XDG_CACHE_HOME}/ssh/controlmasters
+            chmod 700 ${XDG_CACHE_HOME}/ssh/controlmasters
+        fi
+    else
+        echo "ssh not found. Seems strange."
+    fi
+}
+

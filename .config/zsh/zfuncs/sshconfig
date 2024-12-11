@@ -1,0 +1,30 @@
+#!/usr/bin/env zsh
+# ssh config function
+
+sshconfig() {
+    mkdir -p ~/.ssh
+    chmod 700 ~/.ssh
+
+    SSH_CONFIG="${HOME}/.ssh/config"
+    INCLUDE_LINE="Include ~/.config/ssh/config"
+
+    if [[ ! -f "$SSH_CONFIG" ]]; then
+      cat << EOF > "$SSH_CONFIG"
+$INCLUDE_LINE
+
+EOF
+      chmod 600 "$SSH_CONFIG"
+      echo "$SSH_CONFIG created"
+    else
+
+      if ! head -n 1 "$SSH_CONFIG" | grep -qE "^Include"; then
+        local temp_file
+        temp_file=$(mktemp)
+        printf "%s\n\n" "$INCLUDE_LINE" > "$temp_file"
+        cat "$SSH_CONFIG" >> "$temp_file"
+        mv "$temp_file" "$SSH_CONFIG"
+        print "Prepended Include line to $SSH_CONFIG"
+      fi
+    fi
+}
+

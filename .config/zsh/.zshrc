@@ -99,8 +99,11 @@ gitenv
 #autoload -Uz cd
 #cd
 
-#autoload -Uz sshcontrolmaster
-#sshcontrolmaster
+autoload -Uz sshconfig
+sshconfig
+
+autolaod -Uz sshcontrolmaster
+sshcontrolmaster
 
 autoload -Uz tmuxsetup
 tmuxsetup
