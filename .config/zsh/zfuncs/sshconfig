@@ -4,6 +4,16 @@
 sshconfig() {
     mkdir -p ~/.ssh
     chmod 700 ~/.ssh
+    
+    SSH_HOSTS="${HOME}/.ssh/hosts"
+    INCLUDE_HOSTS="Include ~/.ssh/hosts"
+
+    if [[ ! -f "$SSH_HOSTS" ]]; then
+      cat << EOF > "$SSH_HOSTS"
+Host examplealias
+     HostName fqdn
+     User user
+EOF
 
     SSH_CONFIG="${HOME}/.ssh/config"
     INCLUDE_LINE="Include ~/.config/ssh/config"
@@ -12,12 +22,14 @@ sshconfig() {
       cat << EOF > "$SSH_CONFIG"
 $INCLUDE_LINE
 
+$INCLUDE_HOSTS
+
 EOF
       chmod 600 "$SSH_CONFIG"
       echo "$SSH_CONFIG created"
     else
 
-      if ! head -n 1 "$SSH_CONFIG" | grep -qE "^Include"; then
+      if ! head -n 1 "$SSH_CONFIG" | grep -qE "^$INCLUDE_LINE"; then
         local temp_file
         temp_file=$(mktemp)
         printf "%s\n\n" "$INCLUDE_LINE" > "$temp_file"
