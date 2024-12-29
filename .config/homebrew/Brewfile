@@ -40,3 +40,5 @@ brew 'xsel'
 brew 'watchman'
 brew 'fzf'
 brew 'pyenv'
+brew 'fd'
+
