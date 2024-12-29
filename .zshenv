@@ -16,13 +16,16 @@ export SHELL_SESSION_DIR="${XDG_STATE_HOME}/zsh/sessions"
 export SHELL_SESSION_FILE="${SHELL_SESSION_DIR}/${TERM_SESSION_ID}"
 export CLICOLOR=1
 
+# History
+export HISTTIMEFORMAT="%Y-%m-%d %T "
+
 # KDE
 export KDEHOME="${XDG_CONFIG_HOME}/kde"
 
 # xorg-xauth
 export XAUTHORITY="${XDG_RUNTIME_DIR}/Xauthority"
 
-# Homebew
+# Homebrew
 export HOMEBREW_BUNDLE_FILE="${XDG_CONFIG_HOME}/homebrew/Brewfile"
 export HOMEBREW_NO_ANALYTICS=1
 
