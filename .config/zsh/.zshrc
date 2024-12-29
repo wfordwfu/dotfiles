@@ -15,11 +15,15 @@ alias ...='cd ../..'
 alias inv='nvim $(fzf -m --preview="bat --color=always {}")'
 alias MyPath='echo -e ${PATH//:/\\n}'
 
-if ! command -v pbcopy >/dev/null 2>&1 && command -v xsel >/dev/null 2>&1; then
-   alias pbcopy='xsel --input --clipboard'
+if ! command -v pbcopy >/dev/null 2>&1; then
+    if command -v xsel >/dev/null 2>&1; then
+        alias pbcopy='xsel --input --clipboard'
+    fi
 fi
-if ! command -v pbpaste >/dev/null 2>&1 && command -v xsel >/dev/null 2>&1; then
-   alias pbpaste='xsel --output --clipboard'
+if ! command -v pbpaste >/dev/null 2>&1; then
+    if command -v xsel >/dev/null 2>&1; then
+        alias pbpaste='xsel --output --clipboard'
+    fi
 fi
 
 if [[ $(uname -r) =~ WSL ]]; then
@@ -186,3 +190,4 @@ if [[ -f "${HOME}/.ssh/github" ]]; then
   fi
   ssh-add -q ${HOME}/.ssh/github
 fi
+
