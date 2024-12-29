@@ -9,17 +9,21 @@ and will display the opts.desc within the window.
 ]]
 local keymap = {
 -- find
-    ["<Leader>ff"] = { value = "<cmd>Telescope find_files<cr>", opts = { desc = "Find files" }, mode = "n" },
+    ["<Leader>ff"] = { value = "<cmd>Telescope find_files<CR>", opts = { desc = "Find files" }, mode = "n" },
+    ["<Leader>fg"] = { value = "<cmd>lua require('telescope.builtin').live_grep()<CR>", opts = { desc = "Find grep" }, mode = "n" },
 -- window
     ["<Leader>wj"] = { value = "<C-W><C-J>", opts = { silent = true, desc = "Window Down" } },
     ["<Leader>wk"] = { value = "<C-W><C-K>", opts = { silent = true, desc = "Window Up" } },
     ["<Leader>wl"] = { value = "<C-W><C-L>", opts = { silent = true, desc = "Window Right" } },
     ["<Leader>wh"] = { value = "<C-W><C-H>", opts = { silent = true, desc = "Window Left" } },
 -- copy
-    ["<Leader>xa"] = { value = "ggVG:w !zsh -ic 'pbcopy'<CR>", opts = { silent = true, desc = "Copy buffer to clipboard" } },
+    ["<Leader>xa"] = { value = "ggVG<cmd>w !zsh -ic 'pbcopy'<CR>", opts = { silent = true, desc = "Copy buffer to clipboard" } },
 --    ["<Leader>xp"] = { value = ":'<,'> w !pandoc --no-highlight --wrap=none | zsh -ic 'pbcopy'<CR>", opts = { silent = true, desc = "Copy Pandoc format" } },
-    ["<Leader>xp"] = { value = ":let @+ = expand('%:p')<cr>", opts = { silent = true, desc = "Copy file absolute path" }, mode = "n" },
-    ["<Leader>xn"] = { value = ":let @+ = @%<cr>", opts = { silent = true, desc = "Copy file relative path" }, mode = "n" },
+    ["<Leader>xp"] = { value = "<cmd>let @+ = expand('%:p')<CR>", opts = { silent = true, desc = "Copy file absolute path" }, mode = "n" },
+    ["<Leader>xn"] = { value = "<cmd>let @+ = @%<CR>", opts = { silent = true, desc = "Copy file relative path" }, mode = "n" },
+-- nav
+-- Note, to toggle Neotree - <C-n>
+    ["<Leader>nb"] = { value = "<cmd>Neotree buffers reveal float<CR>", opts = { desc = "View Open Buffers" } },
 }
 
 for i = 1, 4 do
