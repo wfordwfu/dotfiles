@@ -85,7 +85,13 @@ fi
 
 
 typeset -U path PATH
-path=(${HOME}/.local/bin $mssqltoolspath $brewpath $path)
+path=(
+  ${HOME}/.local/bin 
+  $(go env GOPATH)/bin
+  $mssqltoolspath 
+  $brewpath 
+  $path
+)
 
 export PATH
 
@@ -103,14 +109,11 @@ gitenv
 #autoload -Uz cd
 #cd
 
-autoload -Uz sshconfig
-sshconfig
+autoload -Uz sshconfig && sshconfig
 
-autoload -Uz sshcontrolmaster
-sshcontrolmaster
+autoload -Uz sshcontrolmaster && sshcontrolmaster
 
-autoload -Uz tmuxsetup
-tmuxsetup
+autoload -Uz tmuxsetup &&tmuxsetup
 
 if hash starship 2>/dev/null; then
   echo "#####################################################"

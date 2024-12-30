@@ -34,7 +34,7 @@ export STARSHIP_CONFIG="${XDG_CONFIG_HOME}/starship/starship.toml"
 export STARSHIP_CACHE="${XDG_CACHE_HOME}/starship"
 
 # Go
-export GOPATH="${GO_DATA_HOME}/go"
+export GOPATH="${XDG_DATA_HOME}/go"
 
 # Python / Jupyter / Conda
 export REQUESTS_CA_BUNDLE="/etc/ssl/certs/ca-certificates.crt"
