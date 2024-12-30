@@ -87,7 +87,7 @@ fi
 typeset -U path PATH
 path=(
   ${HOME}/.local/bin 
-  $(go env GOPATH)/bin
+  ${GOPATH}/bin
   $mssqltoolspath 
   $brewpath 
   $path
