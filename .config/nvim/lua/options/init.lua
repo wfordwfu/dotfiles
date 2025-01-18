@@ -7,6 +7,7 @@ local options = {
   expandtab = true,
   ignorecase = true,
   scrolloff = 8,
+  conceallevel = 1,
   -- smartindent = true,
   -- wrap = true,
   -- swapfile = false,
