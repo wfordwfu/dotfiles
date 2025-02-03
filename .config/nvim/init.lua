@@ -1,21 +1,25 @@
 require "keymap"
 require "options"
 
-local utils = require("utils")
+local obsidian_path = os.getenv("OBSIDIAN_PATH")
 
-vim.api.nvim_create_user_command("SaveToFabric", function(opts)
-  utils.save_to_obsidian(opts.args, "notes/fabric")
-end, {
-    nargs = 1,
-    desc = "Saves current buffer to notes/fabric in obsidian",
-  })
+if obsidian_path then
+    local utils = require("obsidian-utils")
 
-vim.api.nvim_create_user_command("FabricYT", function(opts)
-  utils.process_fabricyt(opts)
-end, {
-    nargs = '*',
-    desc = "Process URL from clipboard through fabric cli with space separated patterns",
-  })
+    vim.api.nvim_create_user_command("SaveToFabric", function(opts)
+      utils.save_to_obsidian(opts.args, "notes/fabric")
+    end, {
+        nargs = 1,
+        desc = "Saves current buffer to notes/fabric in obsidian",
+    })
+
+    vim.api.nvim_create_user_command("FabricYT", function(opts)
+      utils.process_fabricyt(opts)
+    end, {
+        nargs = '*',
+        desc = "Process URL from clipboard through fabric cli with space separated patterns",
+    })
+  end
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
