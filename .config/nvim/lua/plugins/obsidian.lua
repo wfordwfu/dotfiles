@@ -1,3 +1,9 @@
+local obsidian_path = os.getenv("OBSIDIAN_PATH")
+
+if not obsidian_path then
+  return {}
+end
+
 return {
   "epwalsh/obsidian.nvim",
   dependencies = {
@@ -9,7 +15,7 @@ return {
     workspaces = {
       {
         name = "personal",
-        path = os.getenv("OBSIDIAN_PATH"),
+        path = obsidian_path,
       },
     },
     daily_notes = {
