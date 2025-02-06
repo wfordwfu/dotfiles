@@ -15,16 +15,6 @@ alias ...='cd ../..'
 alias inv='nvim $(fzf -m --preview="bat --color=always {}")'
 alias MyPath='echo -e ${PATH//:/\\n}'
 
-if ! command -v pbcopy >/dev/null 2>&1; then
-    if command -v xsel >/dev/null 2>&1; then
-        alias pbcopy='xsel --input --clipboard'
-    fi
-fi
-if ! command -v pbpaste >/dev/null 2>&1; then
-    if command -v xsel >/dev/null 2>&1; then
-        alias pbpaste='xsel --output --clipboard'
-    fi
-fi
 
 if [[ $(uname -r) =~ WSL ]]; then
     alias wopen="cmd.exe /C start 2> /dev/null"
@@ -83,14 +73,18 @@ if [[ -d /opt/mssql-tools18/bin ]]; then
   mssqltoolspath="/opt/mssql-tools18/bin"
 fi
 
+if command -v uv >/dev/null 2>&1; then
+  uvpath="${UV_TOOL_BIN_DIR}"
+fi
 
 typeset -U path PATH
 path=(
   ${HOME}/.local/bin 
   ${GOPATH}/bin
-  $mssqltoolspath 
-  $brewpath 
-  $path
+  ${uvpath}
+  ${mssqltoolspath} 
+  ${brewpath} 
+  ${path}
 )
 
 export PATH
@@ -102,6 +96,19 @@ fpath=(
     "${XDG_CONFIG_HOME}/zsh/zfuncs"
     "${fpath[@]}"
 )
+
+if ! command -v pbcopy >/dev/null 2>&1; then
+    if command -v xsel >/dev/null 2>&1; then
+        alias pbcopy='xsel --input --clipboard'
+    else
+        echo "please run brew install xsel to get pbcopy/pbpaste support"
+    fi
+fi
+if ! command -v pbpaste >/dev/null 2>&1; then
+    if command -v xsel >/dev/null 2>&1; then
+        alias pbpaste='xsel --output --clipboard'
+    fi
+fi
 
 autoload -Uz gitenv _git_dir add_untracked
 gitenv
@@ -126,6 +133,7 @@ else
   ${brewpath}/brew install -q zsh-completions
   ${brewpath}/brew install -q fnm
   ${brewpath}/brew install -q wget
+  ${brewpath}/brew install -q uv
   ${brewpath}/brew install -q pipx
   ${brewpath}/brew install -q direnv
   ${brewpath}/brew install -q zoxide
@@ -154,7 +162,6 @@ fi
 zinit light zsh-users/zsh-completions
 zinit light Aloxaf/fzf-tab
 
-
 # Load zsh completions
 
 autoload -Uz compinit && compinit
@@ -179,6 +186,10 @@ if command -v fzf >/dev/null 2>&1; then
   source <(fzf --zsh)
 fi
 
+if command -v uv >/dev/null 2>&1; then
+  eval "$(uv generate-shell-completion zsh)"
+fi
+
 if command -v pyenv >/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
@@ -193,4 +204,3 @@ if [[ -f "${HOME}/.ssh/github" ]]; then
   fi
   ssh-add -q ${HOME}/.ssh/github
 fi
-
