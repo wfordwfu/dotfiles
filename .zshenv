@@ -44,6 +44,7 @@ export PYENV_ROOT="${XDG_DATA_HOME}/pyenv"
 export CONDARC="${XDG_CONFIG_HOME}/conda/condarc"
 export WORKON_HOME="${XDG_DATA_HOME}/virtualenvs"
 export PIP_CACHE_DIIR="${XDG_CACHE_HOME}/pip"
+export UV_TOOL_BIN_DIR="${XDG_DATA_HOME}/uv/tools"
 
 # R Lang
 export RENV_PATHS_CACHE="${XDG_CACHE_HOME}/renv"
