@@ -19,7 +19,32 @@ if obsidian_path then
         nargs = '*',
         desc = "Process URL from clipboard through fabric cli with space separated patterns",
     })
-  end
+end
+
+-- In your init.lua file
+require('terminal').setup({
+  -- Optional: Override default configuration
+  width_percentage = 90,      -- Width as percentage of screen
+  height_percentage = 90,     -- Height as percentage of screen
+  border = 'rounded',         -- Window border style
+  insert_on_open = true,      -- Enter insert mode when opening terminal
+  
+  -- Skip patterns (when sending code to terminal)
+  skip_patterns = {
+    shebang = true,           -- Skip lines starting with #!
+    shebang_pattern = "^%s*#!"
+  },
+  
+  -- Custom keymaps
+  keys = {
+    toggle = '<Leader>tt',    -- Toggle terminal window
+    send_line = '<Leader>tl', -- Send current line
+    send_selection = '<Leader>tv', -- Send visual selection
+    send_to_cursor = '<Leader>tp', -- Send buffer up to cursor
+    send_buffer = '<Leader>tb' -- Send entire buffer
+  }
+})
+
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then

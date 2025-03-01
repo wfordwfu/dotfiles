@@ -23,7 +23,15 @@ local keymap = {
     ["<Leader>xn"] = { value = "<cmd>let @+ = @%<CR>", opts = { silent = true, desc = "Copy file relative path" }, mode = "n" },
 -- nav
 -- Note, to toggle Neotree - <C-n>
-    ["<Leader>nb"] = { value = "<cmd>Neotree buffers reveal float<CR>", opts = { desc = "View Open Buffers" } },
+    ["<Leader>bl"] = { value = "<cmd>Neotree buffers reveal float<CR>", opts = { desc = "View Open Buffers" } },
+    ["<Leader>bd"] = { value = ":bdelete!<CR>", opts = { desc = "Delete current buffer" },  mode = "n"},
+-- terminal
+-- Replace using tmux-nav
+--    ["<Leader>ts"] = { value = ":split<CR>:terminal<CR>", opts = { desc = "Split Screen Terminal" } },
+-- run
+    ["<Leader>rl"] = { value = ":.w !bash<CR>", opts = { silent = true, desc = "Run Single Line"}, mode = "n" },
+    ["<Leader>rp"] = { value = ":1,.w !bash<CR>", opts = { silent = true, desc = "Run To Position"}, mode = "n" },
+    ["<Leader>rb"] = { value = ":w !bash<CR>", opts = { silent = true, desc = "Run Entire Buffer"}, mode = "n" },
 }
 
 for i = 1, 4 do
@@ -41,3 +49,5 @@ for key, map in pairs(keymap) do
         vim.keymap.set(map.mode or 'n', key, map.value, map.opts)
     end
 end
+
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
