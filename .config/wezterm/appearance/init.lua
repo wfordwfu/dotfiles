@@ -1,6 +1,10 @@
 
 local config = {
   color_scheme = "Dracula",
+  colors = {
+      cursor_bg = "#7aa2f7",
+      cursor_border = "#7aa2f7",
+  },
   macos_window_background_blur = 30,
   window_background_opacity = 0.80,
   window_padding = {
