@@ -77,13 +77,15 @@ if command -v uv >/dev/null 2>&1; then
   uvpath="${UV_TOOL_BIN_DIR}"
 fi
 
+
 typeset -U path PATH
 path=(
-  ${HOME}/.local/bin 
+  ${HOME}/.local/bin
   ${GOPATH}/bin
+  ${CARGO_HOME}/bin
   ${uvpath}
-  ${mssqltoolspath} 
-  ${brewpath} 
+  ${mssqltoolspath}
+  ${brewpath}
   ${path}
 )
 
@@ -115,12 +117,15 @@ gitenv
 
 #autoload -Uz cd
 #cd
+autoload -Uz caenv && caenv
 
 autoload -Uz sshconfig && sshconfig
 
 autoload -Uz sshcontrolmaster && sshcontrolmaster
 
 autoload -Uz tmuxsetup &&tmuxsetup
+
+#autoload -Uz claude &&claude
 
 if hash starship 2>/dev/null; then
   echo "#####################################################"
