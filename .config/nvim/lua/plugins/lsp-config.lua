@@ -18,13 +18,15 @@ return {
   {
     "neovim/nvim-lspconfig",
     config = function()
-      local lspconfig = require('lspconfig')
-      lspconfig.lua_ls.setup({})
-      lspconfig.yamlls.setup({})
-      lspconfig.gopls.setup({})
-      lspconfig.jqls.setup({})
-      lspconfig.pyright.setup({})
-      lspconfig.marksman.setup({})
+      vim.lsp.config('lua_ls', {})
+      vim.lsp.config('yamlls', {})
+      vim.lsp.config('gopls', {})
+      vim.lsp.config('jqls', {})
+      vim.lsp.config('pyright', {})
+      vim.lsp.config('marksman', {})
+    
+      vim.lsp.enable({ 'lua_ls', 'yamlls', 'gopls', 'jqls', 'pyright', 'marksman' })
+    
       vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
       vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, {})
       vim.keymap.set('n', '<leader>gr', vim.lsp.buf.references, {})
