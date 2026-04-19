@@ -37,7 +37,7 @@ export STARSHIP_CACHE="${XDG_CACHE_HOME}/starship"
 export GOPATH="${XDG_DATA_HOME}/go"
 
 # Python / Jupyter / Conda
-export REQUESTS_CA_BUNDLE="/etc/ssl/certs/ca-certificates.crt"
+#export REQUESTS_CA_BUNDLE="/etc/ssl/certs/ca-certificates.crt"
 export JUPYTER_CONFIG_DIR="${XDG_CONFIG_HOME}/jupyter"
 export JUPYTER_PLATFORM_DIRS="1"
 export PYENV_ROOT="${XDG_DATA_HOME}/pyenv"
@@ -55,9 +55,6 @@ export CARGO_HOME="${XDG_DATA_HOME}/cargo"
 
 # k9s
 export K9SCONFIG="${XDG_CONFIG_HOME}/k9s"
-
-# kubernetes
-export KUBECONFIG="${XDG_CONFIG_HOME}/kube"
 
 # aws-cli
 export AWS_SHARED_CREDENTIALS_FILE="${XDG_CONFIG_HOME}/aws/credentials"
@@ -93,12 +90,13 @@ export NIX_CONF_DIR="${XDG_CONFIG_HOME}/nix"
 # export NIX_SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
 
 # curl
-export CURL_CA_BUNDLE="/etc/ssl/certs/ca-certificates.crt"
+# export CURL_CA_BUNDLE="/etc/ssl/certs/ca-certificates.crt"
 
 # wsl
 #export WSL_CERTIFICATE_STORE=/etc/ssl/certs/ca-certificates.crt
 
 # node
-export NODE_EXTRA_CA_CERTS="/etc/ssl/certs/ca-certificates.crt"
+#export NODE_EXTRA_CA_CERTS="/etc/ssl/certs/ca-certificates.crt"
 export NPM_CONFIG_CACHE="${XDG_CACHE_HOME}/npm"
 
+. "/Users/williamford/.local/share/cargo/env"
