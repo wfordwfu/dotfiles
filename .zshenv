@@ -2,6 +2,9 @@
 export EDITOR="nvim"
 export VISUAL="nvim"
 
+# Privacy
+export DO_NOT_TRACK=true
+
 # XDG
 # https://wiki.archlinux.org/title/XDG_Base_Directory
 export XDG_CONFIG_HOME="${HOME}/.config"
@@ -55,6 +58,9 @@ export CARGO_HOME="${XDG_DATA_HOME}/cargo"
 
 # k9s
 export K9SCONFIG="${XDG_CONFIG_HOME}/k9s"
+
+# gh cli
+export GH_TELEMETRY=false
 
 # aws-cli
 export AWS_SHARED_CREDENTIALS_FILE="${XDG_CONFIG_HOME}/aws/credentials"
