@@ -46,4 +46,6 @@ brew 'lima'
 brew 'qemu'
 brew 'jj'
 brew 'tcl-tk'
-
+brew 'opa'
+brew 'regal'
+brew 'conftest'
