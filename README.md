@@ -9,9 +9,8 @@ I'm in the process of building up the Neovim config files.  I'm impressed with t
 ### Prerequsites
 
 - Homebrew - while a popular application manager for Mac, brew is quite capable on Linux as well. The install script can be found at https://brew.sh/.
-- ZSH - if you are running a recent Mac, you should be running zsh already.  If Debian, you can install via APT (`sudo apt install zsh`).  You should also change your default shell (`chsh $(which zsh)` or `sudo chsh $(which zsh) $USER`).  It's also possible to install zsh using brew.
-- Git - Probably best to install via brew
-- Node - Probably best to install via fnm (installed with brew bundle) using `fnm install -lts`
+- ZSH - if you are running a recent Mac, you should be running zsh already.  If Debian, you can install via APT (`sudo apt install zsh`).  You should also change your default shell (`chsh --shell $(which zsh)` or `sudo chsh -shell $(which zsh) $USER`).  It's also possible to install zsh using brew.
+- Git - Probably best to install via brew `/home/linuxbrew/.linuxbrew/bin/brew install git`
 
 ### Why Homebrew?  This isn't a Mac
 
