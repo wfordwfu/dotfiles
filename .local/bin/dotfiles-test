@@ -1,0 +1,15 @@
+#!/usr/bin/env zsh
+# dotfiles-test: checks on the dotfiles repo. Exits nonzero if any check fails.
+emulate -L zsh
+
+cfg() { git --git-dir="$HOME/.cfg" --work-tree="$HOME" "$@" }
+
+failed=0
+check() {  # usage: check "<description>" <function>
+  if "$2"; then print "ok   $1"; else print "FAIL $1"; failed=$((failed + 1)); fi
+}
+
+repo_found() { cfg rev-parse --git-dir >/dev/null 2>&1 }
+
+check "dotfiles repo found at ~/.cfg" repo_found
+exit $(( failed > 0 ))
