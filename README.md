@@ -1,8 +1,6 @@
 # dotfiles
 
-This project is an attempt to standardize my workspace between my various machines (Mac, ChromeOS, Windows, Codespaces).  I'm probably not going to have everything working in all of those environments (specifically Windows), but that is ultimately my goal.
-
-I'm in the process of building up the Neovim config files.  I'm impressed with the work chrisatmachine.com has done with LunarVim, so I'm using that heavily for my inspiration.
+This project is my attempt at a rising tide for all boats.  The goal is to make a base configuration that works in as many situations as possible.  It will give as much capability as it can, but if something isn't available fail gracefully.  The main requirement is function.
 
 ## Getting Started
 
@@ -40,4 +38,3 @@ I may come across a better solution in the future, but prior to this I would wri
 - [XDG Base Directory](https://wiki.archlinux.org/title/XDG_Base_Directory)
 - [LunarVim - nvim-basic-ide](https://github.com/LunarVim/nvim-basic-ide)
 - [DevBox](https://www.jetify.com/devbox/docs/)
-
