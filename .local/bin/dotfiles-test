@@ -17,7 +17,18 @@ no_hardcoded_home() {
   [[ -z $hits ]] || { print -r -- "$hits"; return 1 }
 }
 
+zshenv_only_exports() {
+  awk '
+    /^[[:space:]]*(#|$)/ { next }                 # skip comments and blank lines
+    cont { cont = /\\$/; next }                    # skip continuation lines
+    { cont = /\\$/ }
+    $0 !~ /^export [A-Za-z_][A-Za-z0-9_]*=/ { print FILENAME ":" FNR ": " $0; bad = 1 }
+    END { exit bad }
+  ' "$HOME/.zshenv"
+}
+
 check "dotfiles repo found at ~/.cfg" repo_found
 check "no hard-coded home paths" no_hardcoded_home
+check ".zshenv only sets environment variables" zshenv_only_exports
 
 exit $(( failed > 0 ))
