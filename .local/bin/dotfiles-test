@@ -27,8 +27,29 @@ zshenv_only_exports() {
   ' "$HOME/.zshenv"
 }
 
+zfuncs_work_on_first_call() {
+  local file name last
+  local -a defs public bad
+  for file in "$HOME"/.config/zsh/zfuncs/*(N); do
+    name=${file:t}
+    defs=(${(f)"$(grep -oE '^[[:space:]]*(function[[:space:]]+)?[A-Za-z_][A-Za-z0-9_-]*[[:space:]]*\(\)' "$file" \
+      | sed -E 's/^[[:space:]]*(function[[:space:]]+)?//; s/[[:space:]]*\(\)//')"})
+    public=(${defs:#_*})
+    if [[ "${public[*]}" != "$name" ]]; then
+      bad+=("$name: public functions should be just '$name', found: ${public[*]:-none}")
+      continue
+    fi
+    (( ${#defs} == 1 )) && continue
+    last=$(awk 'NF && $1 !~ /^#/ { l = $0 } END { print l }' "$file")
+    [[ "${last//[[:space:]]/}" == "${name}\"\$@\"" ]] ||
+      bad+=("$name: has helper functions, so its last line must be: $name \"\$@\"")
+  done
+  (( ${#bad} == 0 )) || { print -rl -- $bad; return 1 }
+}
+
 check "dotfiles repo found at ~/.cfg" repo_found
 check "no hard-coded home paths" no_hardcoded_home
 check ".zshenv only sets environment variables" zshenv_only_exports
+check "each zfuncs file works on its first call" zfuncs_work_on_first_call
 
 exit $(( failed > 0 ))

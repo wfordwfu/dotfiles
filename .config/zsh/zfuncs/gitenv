@@ -2,7 +2,7 @@
 # set gitenv
 #echo "Initialize gitenv"
 
-gitenv() {
+_gitenv_setup() {
     if command -v git &> /dev/null; then
       echo "Git found. Checking for Configuation."
       if [ ! -f ${XDG_CONFIG_HOME}/git/config ]; then
@@ -24,9 +24,9 @@ gitenv() {
   amend = commit -a --amend -C HEAD
   contains = branch --contains
   hist = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --branches
-  
+
 EOF
-          
+
           else
             echo "There's a problem connecting to gh cli"
           fi
@@ -51,10 +51,18 @@ _git_dir() {
 }
 # end getdir
 
-add_untracked() {
+_add_untracked() {
   local git_cmd=$(_git_dir)
   local ls_cmd="$git_cmd ls-files --others --full-name --exclude-standard --exclude='go/*' --exclude='.vscode-server/*' --exclude='.npm/*' --exclude='.m2/*' --exclude='.local/state/*' --exclude='.local/share/*' --exclude='.cache/*' --exclude='.kube/*' --exclude='code/*' --"
   local files_to_add=$(eval $ls_cmd | xargs -I {} bash -c '[ ! -L "{}" ] && echo "{}"' | fzf --multi --preview "bat {} --color=always")
   eval "$git_cmd add $files_to_add"
 }
 
+gitenv() {
+  case "$1" in
+    add) _add_untracked ;;
+    *)   _gitenv_setup ;;
+  esac
+}
+
+gitenv "$@"
