@@ -1,0 +1,55 @@
+#!/usr/bin/env zsh
+# dotfiles-test: checks on the dotfiles repo. Exits nonzero if any check fails.
+emulate -L zsh
+
+cfg() { git --git-dir="$HOME/.cfg" --work-tree="$HOME" "$@" }
+
+failed=0
+check() {  # usage: check "<description>" <function>
+  if "$2"; then print "$1 -> OK"; else print "$1 -> FAIL"; failed=$((failed + 1)); fi
+}
+
+repo_found() { cfg rev-parse --git-dir >/dev/null 2>&1 }
+
+no_hardcoded_home() {
+  local hits
+  hits=$(cd "$HOME" && cfg ls-files -z | xargs -0 grep -nE '/(Users|home)/' | grep -vE 'linuxbrew|/home/user/')
+  [[ -z $hits ]] || { print -r -- "$hits"; return 1 }
+}
+
+zshenv_only_exports() {
+  awk '
+    /^[[:space:]]*(#|$)/ { next }                 # skip comments and blank lines
+    cont { cont = /\\$/; next }                    # skip continuation lines
+    { cont = /\\$/ }
+    $0 !~ /^export [A-Za-z_][A-Za-z0-9_]*=/ { print FILENAME ":" FNR ": " $0; bad = 1 }
+    END { exit bad }
+  ' "$HOME/.zshenv"
+}
+
+zfuncs_work_on_first_call() {
+  local file name last
+  local -a defs public bad
+  for file in "$HOME"/.config/zsh/zfuncs/*(N); do
+    name=${file:t}
+    defs=(${(f)"$(grep -oE '^[[:space:]]*(function[[:space:]]+)?[A-Za-z_][A-Za-z0-9_-]*[[:space:]]*\(\)' "$file" \
+      | sed -E 's/^[[:space:]]*(function[[:space:]]+)?//; s/[[:space:]]*\(\)//')"})
+    public=(${defs:#_*})
+    if [[ "${public[*]}" != "$name" ]]; then
+      bad+=("$name: public functions should be just '$name', found: ${public[*]:-none}")
+      continue
+    fi
+    (( ${#defs} == 1 )) && continue
+    last=$(awk 'NF && $1 !~ /^#/ { l = $0 } END { print l }' "$file")
+    [[ "${last//[[:space:]]/}" == "${name}\"\$@\"" ]] ||
+      bad+=("$name: has helper functions, so its last line must be: $name \"\$@\"")
+  done
+  (( ${#bad} == 0 )) || { print -rl -- $bad; return 1 }
+}
+
+check "dotfiles repo found at ~/.cfg" repo_found
+check "no hard-coded home paths" no_hardcoded_home
+check ".zshenv only sets environment variables" zshenv_only_exports
+check "each zfuncs file works on its first call" zfuncs_work_on_first_call
+
+exit $(( failed > 0 ))

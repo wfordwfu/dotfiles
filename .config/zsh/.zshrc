@@ -112,20 +112,13 @@ if ! command -v pbpaste >/dev/null 2>&1; then
     fi
 fi
 
-autoload -Uz gitenv _git_dir add_untracked
-gitenv
-
-#autoload -Uz cd
-#cd
-autoload -Uz caenv && caenv
+autoload -Uz gitenv
 
 autoload -Uz sshconfig && sshconfig
 
 autoload -Uz sshcontrolmaster && sshcontrolmaster
 
 autoload -Uz tmuxsetup &&tmuxsetup
-
-#autoload -Uz claude &&claude
 
 if hash starship 2>/dev/null; then
   echo "#####################################################"

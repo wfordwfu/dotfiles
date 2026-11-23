@@ -1,17 +1,14 @@
 # dotfiles
 
-This project is an attempt to standardize my workspace between my various machines (Mac, ChromeOS, Windows, Codespaces).  I'm probably not going to have everything working in all of those environments (specifically Windows), but that is ultimately my goal.
-
-I'm in the process of building up the Neovim config files.  I'm impressed with the work chrisatmachine.com has done with LunarVim, so I'm using that heavily for my inspiration.
+This project is my attempt at a rising tide for all boats.  The goal is to make a base configuration that works in as many situations as possible.  It will give as much capability as it can, but if something isn't available fail gracefully.  The main requirement is function.
 
 ## Getting Started
 
 ### Prerequsites
 
 - Homebrew - while a popular application manager for Mac, brew is quite capable on Linux as well. The install script can be found at https://brew.sh/.
-- ZSH - if you are running a recent Mac, you should be running zsh already.  If Debian, you can install via APT (`sudo apt install zsh`).  You should also change your default shell (`chsh $(which zsh)` or `sudo chsh $(which zsh) $USER`).  It's also possible to install zsh using brew.
-- Git - Probably best to install via brew
-- Node - Probably best to install via fnm (installed with brew bundle) using `fnm install -lts`
+- ZSH - if you are running a recent Mac, you should be running zsh already.  If Debian, you can install via APT (`sudo apt install zsh`).  You should also change your default shell (`chsh --shell $(which zsh)` or `sudo chsh -shell $(which zsh) $USER`).  It's also possible to install zsh using brew.
+- Git - Probably best to install via brew `/home/linuxbrew/.linuxbrew/bin/brew install git`
 
 ### Why Homebrew?  This isn't a Mac
 
@@ -41,4 +38,3 @@ I may come across a better solution in the future, but prior to this I would wri
 - [XDG Base Directory](https://wiki.archlinux.org/title/XDG_Base_Directory)
 - [LunarVim - nvim-basic-ide](https://github.com/LunarVim/nvim-basic-ide)
 - [DevBox](https://www.jetify.com/devbox/docs/)
-

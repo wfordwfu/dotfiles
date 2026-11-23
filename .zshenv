@@ -104,5 +104,3 @@ export NIX_CONF_DIR="${XDG_CONFIG_HOME}/nix"
 # node
 #export NODE_EXTRA_CA_CERTS="/etc/ssl/certs/ca-certificates.crt"
 export NPM_CONFIG_CACHE="${XDG_CACHE_HOME}/npm"
-
-. "/Users/williamford/.local/share/cargo/env"
