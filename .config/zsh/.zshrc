@@ -1,4 +1,13 @@
 
+
+# Load Bootstrap functions
+
+if [[ -r $ZDOTDIR/bootstrap.zsh ]]; then
+  source $ZDOTDIR/bootstrap.zsh
+else
+  print -u2 "zshrc: bootstrap.zsh missing"
+fi
+
 # Aliases
 
 alias vim='nvim'
@@ -112,7 +121,7 @@ if ! command -v pbpaste >/dev/null 2>&1; then
     fi
 fi
 
-autoload -Uz gitenv
+zfuncs_load gitenv
 
 autoload -Uz sshconfig && sshconfig
 
