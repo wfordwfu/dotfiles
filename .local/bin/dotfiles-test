@@ -47,9 +47,17 @@ zfuncs_work_on_first_call() {
   (( ${#bad} == 0 )) || { print -rl -- $bad; return 1 }
 }
 
+bootstrap_reports_missing() {
+  local out
+  out=$(zsh -f -c "source ${(q)HOME}/.config/zsh/bootstrap.zsh && fpath=(${(q)HOME}/.config/zsh/zfuncs) && zfuncs_load --run no_such_function" 2>&1)
+  (( $? == 1 )) && [[ $out == *"zfuncs_load: no_such_function failed to load"* ]] ||
+    { print -r -- "$out"; return 1 }
+}
+
 check "dotfiles repo found at ~/.cfg" repo_found
 check "no hard-coded home paths" no_hardcoded_home
 check ".zshenv only sets environment variables" zshenv_only_exports
 check "each zfuncs file works on its first call" zfuncs_work_on_first_call
+check "bootstrap loader reports a missing function" bootstrap_reports_missing
 
 exit $(( failed > 0 ))

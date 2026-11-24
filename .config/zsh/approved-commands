@@ -1,0 +1,13 @@
+# Commands every zfunc may use without checking.
+# zsh builtins are always allowed and aren't listed here.
+# Anything else must be checked with `require` before use.
+cat
+chmod
+git
+grep
+head
+mkdir
+mktemp
+mv
+xargs
+
