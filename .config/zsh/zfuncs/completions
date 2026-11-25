@@ -11,19 +11,11 @@ completions() {
 
   if [[ -d $plugins/zsh-completions/src ]]; then
     fpath=($plugins/zsh-completions/src $fpath)
-  elif (( $+functions[zinit] )); then
-    zinit light zsh-users/zsh-completions
   fi
 
   autoload -Uz compinit && compinit
 
   if [[ -r $plugins/fzf-tab/fzf-tab.plugin.zsh ]]; then
     source $plugins/fzf-tab/fzf-tab.plugin.zsh
-  elif (( $+functions[zinit] )); then
-    zinit light Aloxaf/fzf-tab
-  fi
-
-  if (( $+functions[zinit] )); then
-    zinit cdreplay -q
   fi
 }

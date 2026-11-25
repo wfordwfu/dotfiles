@@ -58,17 +58,6 @@ else
   brewpath="/opt/homebrew/bin"
 fi
 
-ZINIT_HOME=${XDG_DATA_HOME}/zinit
-
-if [[ ! -d ${ZINIT_HOME} ]]; then
-  mkdir -p "$(dirname ${ZINIT_HOME})"
-  git clone https://github.com/zdharma-continuum/zinit ${ZINIT_HOME}
-else
-  git -C ${ZINIT_HOME} pull origin main
-fi
-
-source "${ZINIT_HOME}/zinit.zsh"
-
 if [[ -d /opt/mssql-tools18/bin ]]; then
   mssqltoolspath="/opt/mssql-tools18/bin"
 fi
