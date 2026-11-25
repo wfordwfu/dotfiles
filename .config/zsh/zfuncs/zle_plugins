@@ -1,0 +1,15 @@
+# zle_plugins: autosuggestions and syntax highlighting.
+# Call last in .zshrc: syntax highlighting must load after everything
+# else that sets up keys or widgets (fzf, zoxide, fzf-tab).
+zle_plugins() {
+  local plugins=${XDG_DATA_HOME:-$HOME/.local/share}/zsh/plugins
+  local name file
+  for name in zsh-autosuggestions zsh-syntax-highlighting; do
+    file=$plugins/$name/$name.zsh
+    if [[ ! -r $file ]] && (( $+commands[brew] )); then
+      file=$(command brew --prefix)/share/$name/$name.zsh
+    fi
+    [[ -r $file ]] && source $file
+  done
+  return 0
+}

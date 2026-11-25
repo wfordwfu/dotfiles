@@ -91,6 +91,18 @@ completions_uses_plugin_folder() {
   return $rc
 }
 
+zle_plugins_load_in_order() {
+  local tmp out rc=0
+  tmp=$(mktemp -d)
+  mkdir -p $tmp/zsh/plugins/zsh-autosuggestions $tmp/zsh/plugins/zsh-syntax-highlighting
+  print 'typeset -ga FAKE_ORDER; FAKE_ORDER+=suggest' > $tmp/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+  print 'typeset -ga FAKE_ORDER; FAKE_ORDER+=highlight' > $tmp/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  out=$(XDG_DATA_HOME=$tmp zsh -f -c "fpath=(${(q)HOME}/.config/zsh/zfuncs \$fpath); autoload -Uz zle_plugins && zle_plugins && print \$FAKE_ORDER" 2>&1)
+  [[ $out == 'suggest highlight' ]] || { print -r -- "$out"; rc=1 }
+  rm -rf $tmp
+  return $rc
+}
+
 check "dotfiles repo found at ~/.cfg" repo_found
 check "no hard-coded home paths" no_hardcoded_home
 check ".zshenv only sets environment variables" zshenv_only_exports
@@ -99,5 +111,6 @@ check "bootstrap loader reports a missing function" bootstrap_reports_missing
 check "completions runs quietly with no plugins" completions_quiet_without_plugins
 check "periodic reminds, stays quiet, and runs in the background" periodic_behaves
 check "completions uses plugins from the plugin folder" completions_uses_plugin_folder
+check "zle_plugins loads autosuggestions, then syntax highlighting" zle_plugins_load_in_order
 
 exit $(( failed > 0 ))
