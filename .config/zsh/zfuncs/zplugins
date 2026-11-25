@@ -1,0 +1,33 @@
+# zplugins: keep zsh plugins as plain git clones.
+# usage: zplugins update   (clone missing plugins, pull the rest)
+# Plugins live in $XDG_DATA_HOME/zsh/plugins/<name>.
+zplugins() {
+  local dir=${XDG_DATA_HOME:-$HOME/.local/share}/zsh/plugins
+  local -a repos=(
+    https://github.com/zsh-users/zsh-completions
+    https://github.com/Aloxaf/fzf-tab
+    https://github.com/zsh-users/zsh-autosuggestions
+    https://github.com/zsh-users/zsh-syntax-highlighting
+  )
+  local repo name before after rc=0
+
+  if [[ $1 != update ]]; then
+    print -u2 "zplugins: usage: zplugins update"
+    return 2
+  fi
+
+  command mkdir -p "$dir" || return 1
+  for repo in $repos; do
+    name=${repo:t}
+    if [[ ! -d $dir/$name ]]; then
+      print "zplugins: installing $name"
+      command git clone --depth 1 --quiet "$repo" "$dir/$name" || rc=1
+      continue
+    fi
+    before=$(command git -C "$dir/$name" rev-parse --short HEAD)
+    command git -C "$dir/$name" pull --ff-only --quiet || { rc=1; continue }
+    after=$(command git -C "$dir/$name" rev-parse --short HEAD)
+    [[ $before == $after ]] || print "zplugins: $name $before -> $after"
+  done
+  return $rc
+}
