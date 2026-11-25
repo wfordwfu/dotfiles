@@ -164,12 +164,7 @@ else
   echo "Please install zsh-syntax-highlighting via 'brew install zsh-syntax-highlighting'"
 fi
 
-# Add in zsh plugins
-
-zinit light zsh-users/zsh-completions
-zinit light Aloxaf/fzf-tab
-
-# Load zsh completions
+# Load zsh completions and plugins
 
 zfuncs_load --run completions
 
