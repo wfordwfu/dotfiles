@@ -24,6 +24,7 @@ periodic() {
 
   if [[ -r $rc_file && $(<$rc_file) != 0 ]]; then
     print -u2 "periodic: last '$name' run failed, see $log"
+    print -u2 "periodic: to re-run it in the next shell: rm $stamp"
   fi
 
   (( EPOCHSECONDS - last >= seconds )) || return 0

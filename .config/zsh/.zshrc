@@ -120,6 +120,8 @@ zfuncs_load --run sshcontrolmaster
 
 zfuncs_load --run tmuxsetup
 
+zfuncs_load periodic && periodic dotfiles-test 1d --run "$HOME/.local/bin/dotfiles-test"
+
 if hash starship 2>/dev/null; then
   echo "#####################################################"
   echo "Run brew bundle to install/update additional features"
