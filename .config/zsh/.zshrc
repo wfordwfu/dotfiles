@@ -125,9 +125,9 @@ zfuncs_load gitenv
 
 zfuncs_load --run sshconfig
 
-autoload -Uz sshcontrolmaster && sshcontrolmaster
+zfuncs_load --run sshcontrolmaster
 
-autoload -Uz tmuxsetup &&tmuxsetup
+zfuncs_load --run tmuxsetup
 
 if hash starship 2>/dev/null; then
   echo "#####################################################"
