@@ -123,7 +123,7 @@ fi
 
 zfuncs_load gitenv
 
-autoload -Uz sshconfig && sshconfig
+zfuncs_load --run sshconfig
 
 autoload -Uz sshcontrolmaster && sshcontrolmaster
 
