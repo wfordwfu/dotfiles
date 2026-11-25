@@ -1,17 +1,28 @@
 # completions: turn on tab completion.
 # Call after everything that adds to fpath.
 completions() {
+  local plugins=${XDG_DATA_HOME:-$HOME/.local/share}/zsh/plugins
+
   zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
   zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
   zstyle ':completion:*' menu no
   zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
   zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
-  if (( $+functions[zinit] )); then
+  if [[ -d $plugins/zsh-completions/src ]]; then
+    fpath=($plugins/zsh-completions/src $fpath)
+  elif (( $+functions[zinit] )); then
     zinit light zsh-users/zsh-completions
+  fi
+
+  autoload -Uz compinit && compinit
+
+  if [[ -r $plugins/fzf-tab/fzf-tab.plugin.zsh ]]; then
+    source $plugins/fzf-tab/fzf-tab.plugin.zsh
+  elif (( $+functions[zinit] )); then
     zinit light Aloxaf/fzf-tab
   fi
-  autoload -Uz compinit && compinit
+
   if (( $+functions[zinit] )); then
     zinit cdreplay -q
   fi

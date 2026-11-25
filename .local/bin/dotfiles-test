@@ -79,6 +79,18 @@ periodic_behaves() {
   return $rc
 }
 
+completions_uses_plugin_folder() {
+  local tmp out rc=0
+  tmp=$(mktemp -d)
+  mkdir -p $tmp/zsh/plugins/zsh-completions/src $tmp/zsh/plugins/fzf-tab
+  print '#compdef fakecmd' > $tmp/zsh/plugins/zsh-completions/src/_fakecmd
+  print 'typeset -g FAKE_FZF_TAB=1' > $tmp/zsh/plugins/fzf-tab/fzf-tab.plugin.zsh
+  out=$(HOME=$tmp ZDOTDIR=$tmp XDG_DATA_HOME=$tmp zsh -f -c "fpath=(${(q)HOME}/.config/zsh/zfuncs \$fpath); autoload -Uz completions && completions && print \${_comps[fakecmd]} \$FAKE_FZF_TAB" 2>&1)
+  [[ $out == '_fakecmd 1' ]] || { print -r -- "$out"; rc=1 }
+  rm -rf $tmp
+  return $rc
+}
+
 check "dotfiles repo found at ~/.cfg" repo_found
 check "no hard-coded home paths" no_hardcoded_home
 check ".zshenv only sets environment variables" zshenv_only_exports
@@ -86,5 +98,6 @@ check "each zfuncs file works on its first call" zfuncs_work_on_first_call
 check "bootstrap loader reports a missing function" bootstrap_reports_missing
 check "completions runs quietly with no plugins" completions_quiet_without_plugins
 check "periodic reminds, stays quiet, and runs in the background" periodic_behaves
+check "completions uses plugins from the plugin folder" completions_uses_plugin_folder
 
 exit $(( failed > 0 ))
