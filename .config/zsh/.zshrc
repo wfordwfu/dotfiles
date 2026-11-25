@@ -143,20 +143,6 @@ if hash pipx 2>/dev/null; then
   pipx ensurepath
 fi
 
-#AUTOSUGGEST=$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-if test -f "$AUTOSUGGEST"; then
-  source "$AUTOSUGGEST"
-else
-  echo "Please install zsh-autosuggestions via 'brew install zsh-autosuggestions'"
-fi
-
-#SYNTAXHIGHLIGHT=$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-if test -f "$SYNTAXHIGHLIGHT"; then
-  source "$SYNTAXHIGHLIGHT"
-else
-  echo "Please install zsh-syntax-highlighting via 'brew install zsh-syntax-highlighting'"
-fi
-
 # Load zsh completions and plugins
 
 zfuncs_load --run completions
