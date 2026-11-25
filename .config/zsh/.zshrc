@@ -171,13 +171,7 @@ zinit light Aloxaf/fzf-tab
 
 # Load zsh completions
 
-autoload -Uz compinit && compinit
-
-#autoload -Uz compinit promptinit
-#compinit
-#promptinit
-
-zinit cdreplay -q
+zfuncs_load --run completions
 
 # Shell integrations
 

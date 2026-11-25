@@ -54,10 +54,21 @@ bootstrap_reports_missing() {
     { print -r -- "$out"; return 1 }
 }
 
+completions_quiet_without_plugins() {
+  local tmp out rc
+  tmp=$(mktemp -d)
+  out=$(HOME=$tmp ZDOTDIR=$tmp zsh -f -c "fpath=(${(q)HOME}/.config/zsh/zfuncs \$fpath); autoload -Uz completions && completions && (( \$+functions[compdef] ))" 2>&1)
+  rc=$?
+  rm -rf "$tmp"
+  [[ $rc == 0 && -z $out ]] || { print -r -- "${out:-exit status $rc}"; return 1 }
+}
+
+
 check "dotfiles repo found at ~/.cfg" repo_found
 check "no hard-coded home paths" no_hardcoded_home
 check ".zshenv only sets environment variables" zshenv_only_exports
 check "each zfuncs file works on its first call" zfuncs_work_on_first_call
 check "bootstrap loader reports a missing function" bootstrap_reports_missing
+check "completions runs quietly with no plugins" completions_quiet_without_plugins
 
 exit $(( failed > 0 ))

@@ -1,0 +1,8 @@
+# completions: turn on tab completion.
+# Call after everything that adds to fpath.
+completions() {
+  autoload -Uz compinit && compinit
+  if (( $+functions[zinit] )); then
+    zinit cdreplay -q
+  fi
+}
