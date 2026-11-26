@@ -1,14 +1,13 @@
-#!/usr/bin/env zsh
-# setup for tmux
-
-
+# tmuxsetup: install tpm (the tmux plugin manager), or update it if it's there.
+# Runs in the background through zfuncs_periodic.
+# If tmux plugins misbehave: rm -rf ~/.cache/tmux and
+# ~/.local/state/zsh/periodic/tmux.stamp, then open a new shell.
 tmuxsetup() {
-    if command -v tmux &> /dev/null; then
-      if [[ ! -d ${XDG_CACHE_HOME}/tmux/plugins ]]; then
-        mkdir -p ${XDG_CACHE_HOME}/tmux/plugins
-        git clone https://github.com/tmux-plugins/tpm ${XDG_CACHE_HOME}/tmux/plugins/tpm
-      else
-        echo "if having issues with tmux, rm -rf ~/.cache/tmux and restart terminal"
-      fi
-    fi
+  (( $+commands[tmux] )) || return 0
+  local tpm=${XDG_CACHE_HOME:-$HOME/.cache}/tmux/plugins/tpm
+  if [[ -d $tpm ]]; then
+    command git -C "$tpm" pull --ff-only --quiet
+  else
+    command mkdir -p "${tpm:h}" && command git clone --depth 1 --quiet https://github.com/tmux-plugins/tpm "$tpm"
+  fi
 }

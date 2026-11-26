@@ -118,6 +118,19 @@ startup_functions_succeed() {
   (( ${#bad} == 0 )) || { print -rl -- $bad; return 1 }
 }
 
+startup_functions_offline() {
+  local name file hits
+  local -a names bad
+  names=(${(f)"$(grep -oE '^[[:space:]]*zfuncs_load --run [A-Za-z_][A-Za-z0-9_]*' "$HOME/.config/zsh/.zshrc" | awk '{print $3}')"})
+  for name in $names; do
+    file=$HOME/.config/zsh/zfuncs/$name
+    hits=$(grep -nE '(^|[^A-Za-z0-9_-])(git([[:space:]]+-C[[:space:]]+[^[:space:]]+)?[[:space:]]+(clone|pull|fetch)|curl|wget)([^A-Za-z0-9_-]|$)' "$file" \
+      | grep -vE '^[0-9]+:[[:space:]]*#')
+    [[ -z $hits ]] || bad+=("$name:" "$hits")
+  done
+  (( ${#bad} == 0 )) || { print -rl -- $bad; return 1 }
+}
+
 check "dotfiles repo found at ~/.cfg" repo_found
 check "no hard-coded home paths" no_hardcoded_home
 check ".zshenv only sets environment variables" zshenv_only_exports
@@ -128,5 +141,6 @@ check "periodic reminds, stays quiet, and runs in the background" periodic_behav
 check "completions uses plugins from the plugin folder" completions_uses_plugin_folder
 check "zle_plugins loads autosuggestions, then syntax highlighting" zle_plugins_load_in_order
 check "startup functions succeed on a fresh machine" startup_functions_succeed
+check "startup functions don't use the network" startup_functions_offline
 
 exit $(( failed > 0 ))

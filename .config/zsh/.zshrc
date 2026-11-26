@@ -106,9 +106,9 @@ zfuncs_load --run sshconfig
 
 zfuncs_load --run sshcontrolmaster
 
-zfuncs_load --run tmuxsetup
-
 zfuncs_periodic dotfiles-test 1d --run "$HOME/.local/bin/dotfiles-test"
+
+zfuncs_load tmuxsetup && zfuncs_periodic tmux 1d --run tmuxsetup
 
 zfuncs_load zplugins && zfuncs_periodic plugins 1d --run zplugins update
 
