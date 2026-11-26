@@ -1,5 +1,4 @@
 
-
 # Load Bootstrap functions
 
 if [[ -r $ZDOTDIR/bootstrap.zsh ]]; then
@@ -109,7 +108,9 @@ zfuncs_load --run sshcontrolmaster
 
 zfuncs_load --run tmuxsetup
 
-zfuncs_load periodic && periodic dotfiles-test 1d --run "$HOME/.local/bin/dotfiles-test"
+zfuncs_periodic dotfiles-test 1d --run "$HOME/.local/bin/dotfiles-test"
+
+zfuncs_load zplugins && zfuncs_periodic plugins 1d --run zplugins update
 
 if hash starship 2>/dev/null; then
   echo "#####################################################"
@@ -170,4 +171,3 @@ if [[ -f "${HOME}/.ssh/github" ]]; then
 fi
 
 zfuncs_load --run zle_plugins
-

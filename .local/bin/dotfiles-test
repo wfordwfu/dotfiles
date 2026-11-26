@@ -67,10 +67,10 @@ periodic_behaves() {
   local tmp out rc=0
   tmp=$(mktemp -d)
   out=$(XDG_STATE_HOME=$tmp zsh -f -c "
-    fpath=(${(q)HOME}/.config/zsh/zfuncs \$fpath); autoload -Uz periodic
-    periodic t 1d print reminder-test        # due: prints a reminder
-    periodic t 1d print reminder-test        # not due: silent
-    periodic r 1d --run touch ${(q)tmp}/ran  # due: runs in the background
+    source ${(q)HOME}/.config/zsh/bootstrap.zsh
+    zfuncs_periodic t 1d print reminder-test        # due: prints a reminder
+    zfuncs_periodic t 1d print reminder-test        # not due: silent
+    zfuncs_periodic r 1d --run touch ${(q)tmp}/ran  # due: runs in the background
     sleep 1
     [[ -f ${(q)tmp}/ran ]] && print ran
   " 2>&1)
