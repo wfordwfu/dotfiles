@@ -103,6 +103,21 @@ zle_plugins_load_in_order() {
   return $rc
 }
 
+startup_functions_succeed() {
+  local tmp name out
+  local -a names bad
+  names=(${(f)"$(grep -oE '^[[:space:]]*zfuncs_load --run [A-Za-z_][A-Za-z0-9_]*' "$HOME/.config/zsh/.zshrc" | awk '{print $3}')"})
+  for name in $names; do
+    tmp=$(mktemp -d)
+    out=$(HOME=$tmp ZDOTDIR=$tmp XDG_CONFIG_HOME=$tmp/.config XDG_CACHE_HOME=$tmp/.cache \
+          XDG_DATA_HOME=$tmp/.local/share XDG_STATE_HOME=$tmp/.local/state \
+          zsh -f -c "fpath=(${(q)HOME}/.config/zsh/zfuncs \$fpath); autoload -Uz $name && $name" 2>&1) ||
+      bad+=("$name failed:" "$out")
+    rm -rf $tmp
+  done
+  (( ${#bad} == 0 )) || { print -rl -- $bad; return 1 }
+}
+
 check "dotfiles repo found at ~/.cfg" repo_found
 check "no hard-coded home paths" no_hardcoded_home
 check ".zshenv only sets environment variables" zshenv_only_exports
@@ -112,5 +127,6 @@ check "completions runs quietly with no plugins" completions_quiet_without_plugi
 check "periodic reminds, stays quiet, and runs in the background" periodic_behaves
 check "completions uses plugins from the plugin folder" completions_uses_plugin_folder
 check "zle_plugins loads autosuggestions, then syntax highlighting" zle_plugins_load_in_order
+check "startup functions succeed on a fresh machine" startup_functions_succeed
 
 exit $(( failed > 0 ))
