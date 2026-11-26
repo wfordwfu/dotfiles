@@ -1,42 +1,40 @@
 #!/usr/bin/env zsh
-# ssh config function
-
+# sshconfig: make sure ~/.ssh/config includes the config from these dotfiles.
+# Creates ~/.ssh/config and an example ~/.ssh/hosts if they don't exist.
 sshconfig() {
-    mkdir -p ~/.ssh
-    chmod 700 ~/.ssh
-    
-    SSH_HOSTS="${HOME}/.ssh/hosts"
-    INCLUDE_HOSTS="Include ~/.ssh/hosts"
-    SSH_CONFIG="${HOME}/.ssh/config"
-    INCLUDE_LINE="Include ~/.config/ssh/config"
+  local ssh_dir=$HOME/.ssh
+  local hosts=$ssh_dir/hosts config=$ssh_dir/config
+  local include_line="Include ~/.config/ssh/config"
+  local include_hosts="Include ~/.ssh/hosts"
+  local first tmp
 
-    if [[ ! -f "$SSH_HOSTS" ]]; then
-        cat << EOF > "$SSH_HOSTS"
+  command mkdir -p "$ssh_dir" && command chmod 700 "$ssh_dir" || return 1
+
+  if [[ ! -f $hosts ]]; then
+    command cat << EOF > "$hosts"
 Host examplealias
      HostName fqdn
      User user
 EOF
-    fi
+  fi
 
-    if [[ ! -f "$SSH_CONFIG" ]]; then
-        cat << EOF > "$SSH_CONFIG"
-$INCLUDE_LINE
+  if [[ ! -f $config ]]; then
+    command cat << EOF > "$config"
+$include_line
 
-$INCLUDE_HOSTS
+$include_hosts
 
 EOF
-        chmod 600 "$SSH_CONFIG"
-        echo "$SSH_CONFIG created"
+    command chmod 600 "$config"
+    print "$config created"
+    return 0
+  fi
 
-    else
-        if ! head -n 1 "$SSH_CONFIG" | grep -qE "^$INCLUDE_LINE"; then
-            local temp_file
-            temp_file=$(mktemp)
-            printf "%s\n\n" "$INCLUDE_LINE" > "$temp_file"
-            cat "$SSH_CONFIG" >> "$temp_file"
-            mv "$temp_file" "$SSH_CONFIG"
-            print "Prepended Include line to $SSH_CONFIG"
-        fi
-    fi
+  IFS= read -r first < "$config"
+  if [[ $first != "$include_line"* ]]; then
+    tmp=$(command mktemp) || return 1
+    { print -r -- "$include_line"; print; command cat "$config" } >| "$tmp" &&
+      command mv "$tmp" "$config" &&
+      print "Prepended Include line to $config"
+  fi
 }
-

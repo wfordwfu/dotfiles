@@ -1,3 +1,4 @@
+#!/usr/bin/env zsh
 # completions: turn on tab completion.
 # Call after everything that adds to fpath.
 completions() {

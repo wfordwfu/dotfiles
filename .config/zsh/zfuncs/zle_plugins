@@ -1,3 +1,4 @@
+#!/usr/bin/env zsh
 # zle_plugins: autosuggestions and syntax highlighting.
 # Call last in .zshrc: syntax highlighting must load after everything
 # else that sets up keys or widgets (fzf, zoxide, fzf-tab).

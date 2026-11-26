@@ -1,3 +1,4 @@
+#!/usr/bin/env zsh
 # tmuxsetup: install tpm (the tmux plugin manager), or update it if it's there.
 # Runs in the background through zfuncs_periodic.
 # If tmux plugins misbehave: rm -rf ~/.cache/tmux and

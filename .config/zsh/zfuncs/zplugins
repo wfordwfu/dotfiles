@@ -1,3 +1,4 @@
+#!/usr/bin/env zsh
 # zplugins: keep zsh plugins as plain git clones.
 # usage: zplugins update   (clone missing plugins, pull the rest)
 # Plugins live in $XDG_DATA_HOME/zsh/plugins/<name>.
