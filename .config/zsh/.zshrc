@@ -139,23 +139,31 @@ zfuncs_load --run completions
 
 # Shell integrations
 
-eval "$(direnv hook zsh)"
+if (( $+commands[direnv] )); then
+  eval "$(direnv hook zsh)"
+fi
 
-eval "$(zoxide init --cmd cd zsh)"
+if (( $+commands[zoxide] )); then
+  eval "$(zoxide init --cmd cd zsh)"
+fi
 
-eval "$(starship init zsh)"
+if (( $+commands[starship] )); then
+  eval "$(starship init zsh)"
+fi
 
-eval "$(fnm env --use-on-cd)"
+if (( $+commands[fnm] )); then
+  eval "$(fnm env --use-on-cd)"
+fi
 
-if command -v fzf >/dev/null 2>&1; then
+if (( $+commands[fzf] )); then
   source <(fzf --zsh)
 fi
 
-if command -v uv >/dev/null 2>&1; then
+if (( $+commands[uv] )); then
   eval "$(uv generate-shell-completion zsh)"
 fi
 
-if command -v pyenv >/dev/null 2>&1; then
+if (( $+commands[pyenv] )); then
   eval "$(pyenv init -)"
 fi
 
