@@ -65,7 +65,6 @@ if command -v uv >/dev/null 2>&1; then
   uvpath="${UV_TOOL_BIN_DIR}"
 fi
 
-
 typeset -U path PATH
 path=(
   ${HOME}/.local/bin
@@ -112,21 +111,14 @@ zfuncs_load tmuxsetup && zfuncs_periodic tmux 1d --run tmuxsetup
 
 zfuncs_load zplugins && zfuncs_periodic plugins 1d --run zplugins update
 
-if hash starship 2>/dev/null; then
-  echo "#####################################################"
-  echo "Run brew bundle to install/update additional features"
-  echo "#####################################################"
-else
-  ${brewpath}/brew install -q starship
-  ${brewpath}/brew install -q zsh-autosuggestions
-  ${brewpath}/brew install -q zsh-syntax-highlighting
-  ${brewpath}/brew install -q zsh-completions
-  ${brewpath}/brew install -q fnm
-  ${brewpath}/brew install -q wget
-  ${brewpath}/brew install -q uv
-  ${brewpath}/brew install -q pipx
-  ${brewpath}/brew install -q direnv
-  ${brewpath}/brew install -q zoxide
+# Core tools: install any that are missing (the Brewfile holds the extras).
+if [[ -x ${brewpath}/brew ]]; then
+  () {
+    local tool
+    for tool in starship fnm wget uv pipx direnv zoxide; do
+      (( $+commands[$tool] )) || ${brewpath}/brew install -q $tool
+    done
+  }
 fi
 
 if hash pipx 2>/dev/null; then
