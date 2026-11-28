@@ -121,10 +121,6 @@ if [[ -x ${brewpath}/brew ]]; then
   }
 fi
 
-if hash pipx 2>/dev/null; then
-  pipx ensurepath
-fi
-
 # Load zsh completions and plugins
 
 zfuncs_load --run completions
